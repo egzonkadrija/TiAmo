@@ -1,8 +1,8 @@
 export const companyStats = [
-  { value: '1997', label: 'Since on the About page' },
+  { value: '2003', label: 'Founded' },
   { value: '20 t/day', label: 'Production capacity' },
   { value: '55+', label: 'Employees' },
-  { value: 'HACCP + HALAL', label: 'Standards' },
+  { value: 'HACCP + HALAL', label: 'Certifications' },
 ]
 
 export const featuredProducts = [

@@ -113,7 +113,6 @@ function App() {
             <img className="brand-logo" src={tiamoLogo} alt="TIAMO logo" />
             <span className="brand-copy">
               <strong>TIAMO</strong>
-              <small>Meat processing and meat products</small>
             </span>
           </RouteLink>
 
@@ -153,7 +152,7 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-grid">
-          <div className="footer-brand">
+          <div className="footer-brand footer-column">
             <img className="footer-logo" src={tiamoLogo} alt="TIAMO logo" />
             <p>
               TIAMO is presented here as a React-built corporate site with separate pages and
@@ -161,9 +160,9 @@ function App() {
             </p>
           </div>
 
-          <div>
+          <div className="footer-column">
             <h2>Company</h2>
-            <div className="footer-links">
+            <div className="footer-links footer-links-plain">
               {primaryNavigation.map((item) => (
                 <RouteLink key={item.path} to={item.path} onNavigate={navigate}>
                   {item.label}
@@ -172,10 +171,10 @@ function App() {
             </div>
           </div>
 
-          <div>
+          <div className="footer-column">
             <h2>Categories</h2>
-            <div className="footer-links">
-              {categories.slice(0, 4).map((category) => (
+            <div className="footer-links footer-links-plain">
+              {categories.slice(0, 6).map((category) => (
                 <RouteLink
                   key={category.slug}
                   to={buildCategoryPath(category.slug)}
@@ -187,9 +186,9 @@ function App() {
             </div>
           </div>
 
-          <div>
+          <div className="footer-column">
             <h2>Contact</h2>
-            <div className="footer-links footer-links-text">
+            <div className="footer-links footer-links-text footer-links-plain">
               <span>{contactDetails.address}</span>
               <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
               <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
@@ -207,6 +206,7 @@ function HomePage({ onNavigate }) {
       <section className="hero-banner" style={{ backgroundImage: `url(${aboutContent.image})` }}>
         <div className="hero-overlay">
           <div className="hero-panel">
+            <div className="hero-ribbon">Food that matters</div>
             <p className="eyebrow">North Macedonia meat production</p>
             <h1>Quality meat products for retail, horeca, and everyday supply.</h1>
             <p className="hero-text">
@@ -390,4 +390,146 @@ function AboutPage({ onNavigate }) {
             ))}
           </div>
         </aside>
-      </secti
+      </section>
+    </div>
+  )
+}
+
+function ContactPage() {
+  return (
+    <div className="page-content">
+      <section className="subpage-banner contact-banner">
+        <div className="subpage-overlay">
+          <div className="subpage-copy narrow">
+            <p className="section-tag">Contact</p>
+            <h1>Direct details from the TIAMO contact page.</h1>
+            <p>Address, email, phone link, and map route are preserved in a cleaner company format.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell contact-grid">
+        <article className="content-card">
+          <h2>Reach TIAMO</h2>
+          <div className="detail-list">
+            <div className="detail-row">
+              <span>Address</span>
+              <strong>{contactDetails.address}</strong>
+            </div>
+            <div className="detail-row">
+              <span>Email</span>
+              <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+            </div>
+            <div className="detail-row">
+              <span>Phone</span>
+              <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
+            </div>
+          </div>
+        </article>
+
+        <aside className="content-card accent-card">
+          <h2>Location</h2>
+          <p>{contactDetails.mapLabel}</p>
+          <a className="button button-primary" href={contactDetails.mapUrl} target="_blank" rel="noreferrer">
+            Open Google Maps
+          </a>
+        </aside>
+      </section>
+    </div>
+  )
+}
+
+function CategoryPage({ category, onNavigate }) {
+  return (
+    <div className="page-content">
+      <section className="subpage-banner" style={{ backgroundImage: `url(${category.heroImage})` }}>
+        <div className="subpage-overlay">
+          <div className="subpage-copy">
+            <p className="section-tag">TIAMO category</p>
+            <h1>{category.title}</h1>
+            <p>{category.description}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell category-topline">
+        <div className="category-topline__summary">
+          <h2>{category.products.length} products in this category</h2>
+          <p>Images and product names are arranged from the original TIAMO category source.</p>
+        </div>
+
+        <div className="side-links compact">
+          {categories
+            .filter((item) => item.slug !== category.slug)
+            .slice(0, 4)
+            .map((item) => (
+              <RouteLink key={item.slug} to={buildCategoryPath(item.slug)} onNavigate={onNavigate}>
+                {item.title}
+              </RouteLink>
+            ))}
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="product-grid">
+          {category.products.map((product) => (
+            <article className="product-card" key={`${category.slug}-${product.slug}`}>
+              <img src={product.image} alt={product.name} loading="lazy" />
+              <div className="product-card__body">
+                <span>{category.title}</span>
+                <h3>{product.name}</h3>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </div>
+  )
+}
+
+function NotFoundPage({ onNavigate }) {
+  return (
+    <div className="page-content">
+      <section className="subpage-banner contact-banner">
+        <div className="subpage-overlay">
+          <div className="subpage-copy narrow">
+            <p className="section-tag">Page not found</p>
+            <h1>The requested page is not part of the TIAMO structure.</h1>
+            <p>Use the navigation to return to the company pages and product categories.</p>
+            <RouteLink to="/" onNavigate={onNavigate} className="button button-primary">
+              Go home
+            </RouteLink>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+function RouteLink({ to, onNavigate, className, children }) {
+  return (
+    <a
+      className={className}
+      href={to}
+      onClick={(event) => {
+        if (
+          event.defaultPrevented ||
+          event.button !== 0 ||
+          event.metaKey ||
+          event.ctrlKey ||
+          event.shiftKey ||
+          event.altKey
+        ) {
+          return
+        }
+
+        event.preventDefault()
+        onNavigate(to)
+      }}
+    >
+      {children}
+    </a>
+  )
+}
+
+export default App
