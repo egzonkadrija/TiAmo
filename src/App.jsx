@@ -151,47 +151,49 @@ function App() {
       <main>{content}</main>
 
       <footer className="site-footer">
-        <div className="footer-grid">
-          <div className="footer-brand footer-column">
-            <img className="footer-logo" src={tiamoLogo} alt="TIAMO logo" />
-            <p>
-              TIAMO is presented here as a React-built corporate site with separate pages and
-              source-based product categories.
-            </p>
-          </div>
-
-          <div className="footer-column">
-            <h2>Company</h2>
-            <div className="footer-links footer-links-plain">
-              {primaryNavigation.map((item) => (
-                <RouteLink key={item.path} to={item.path} onNavigate={navigate}>
-                  {item.label}
-                </RouteLink>
-              ))}
+        <div className="section-inner">
+          <div className="footer-grid">
+            <div className="footer-brand footer-column">
+              <img className="footer-logo" src={tiamoLogo} alt="TIAMO logo" />
+              <p>
+                TIAMO is presented here as a React-built corporate site with separate pages and
+                source-based product categories.
+              </p>
             </div>
-          </div>
 
-          <div className="footer-column">
-            <h2>Categories</h2>
-            <div className="footer-links footer-links-plain">
-              {categories.slice(0, 6).map((category) => (
-                <RouteLink
-                  key={category.slug}
-                  to={buildCategoryPath(category.slug)}
-                  onNavigate={navigate}
-                >
-                  {category.title}
-                </RouteLink>
-              ))}
+            <div className="footer-column">
+              <h2>Company</h2>
+              <div className="footer-links footer-links-plain">
+                {primaryNavigation.map((item) => (
+                  <RouteLink key={item.path} to={item.path} onNavigate={navigate}>
+                    {item.label}
+                  </RouteLink>
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="footer-column">
-            <h2>Contact</h2>
-            <div className="footer-links footer-links-text footer-links-plain">
-              <span>{contactDetails.address}</span>
-              <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-              <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
+            <div className="footer-column">
+              <h2>Categories</h2>
+              <div className="footer-links footer-links-plain">
+                {categories.slice(0, 6).map((category) => (
+                  <RouteLink
+                    key={category.slug}
+                    to={buildCategoryPath(category.slug)}
+                    onNavigate={navigate}
+                  >
+                    {category.title}
+                  </RouteLink>
+                ))}
+              </div>
+            </div>
+
+            <div className="footer-column">
+              <h2>Contact</h2>
+              <div className="footer-links footer-links-text footer-links-plain">
+                <span>{contactDetails.address}</span>
+                <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+                <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -231,113 +233,123 @@ function HomePage({ onNavigate }) {
       </section>
 
       <section className="overview-section">
-        <article className="overview-copy">
-          <p className="section-tag">TIAMO overview</p>
-          <h2>Food production presented with a cleaner corporate structure.</h2>
-          <p>
-            The new layout shifts TIAMO away from a generic catalog feel and toward a corporate
-            presentation similar in rhythm to large food-group sites: clear overview copy, focused
-            metrics, structured category access, and cleaner page separation.
-          </p>
-          <div className="focus-list">
-            {marketFocus.map((item) => (
-              <div className="focus-item" key={item}>
-                <span />
-                <p>{item}</p>
-              </div>
-            ))}
-          </div>
-        </article>
+        <div className="section-inner overview-section__inner">
+          <article className="overview-copy">
+            <p className="section-tag">TIAMO overview</p>
+            <h2>Food production presented with a cleaner corporate structure.</h2>
+            <p>
+              The new layout shifts TIAMO away from a generic catalog feel and toward a corporate
+              presentation similar in rhythm to large food-group sites: clear overview copy, focused
+              metrics, structured category access, and cleaner page separation.
+            </p>
+            <div className="focus-list">
+              {marketFocus.map((item) => (
+                <div className="focus-item" key={item}>
+                  <span />
+                  <p>{item}</p>
+                </div>
+              ))}
+            </div>
+          </article>
 
-        <aside className="overview-cards">
-          {categories.slice(0, 4).map((category) => (
-            <RouteLink
-              key={category.slug}
-              to={buildCategoryPath(category.slug)}
-              onNavigate={onNavigate}
-              className="overview-card"
-            >
-              <img src={category.heroImage} alt={category.title} loading="lazy" />
-              <div>
-                <strong>{category.title}</strong>
-                <span>{String(category.products.length).padStart(2, '0')} products</span>
-              </div>
-            </RouteLink>
-          ))}
-        </aside>
+          <aside className="overview-cards">
+            {categories.slice(0, 4).map((category) => (
+              <RouteLink
+                key={category.slug}
+                to={buildCategoryPath(category.slug)}
+                onNavigate={onNavigate}
+                className="overview-card"
+              >
+                <img src={category.heroImage} alt={category.title} loading="lazy" />
+                <div>
+                  <strong>{category.title}</strong>
+                  <span>{String(category.products.length).padStart(2, '0')} products</span>
+                </div>
+              </RouteLink>
+            ))}
+          </aside>
+        </div>
       </section>
 
       <section className="facts-section">
-        <div className="section-heading center">
-          <p className="section-tag">Facts and figures</p>
-          <h2>Core numbers up front, in the style of a company overview rather than a landing page.</h2>
-        </div>
+        <div className="section-inner">
+          <div className="section-heading center">
+            <p className="section-tag">Facts and figures</p>
+            <h2>Core numbers up front, in the style of a company overview rather than a landing page.</h2>
+          </div>
 
-        <div className="facts-grid">
-          {companyStats.map((item) => (
-            <article className="fact-card" key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </article>
-          ))}
+          <div className="facts-grid">
+            {companyStats.map((item) => (
+              <article className="fact-card" key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section-shell muted-shell">
-        <div className="section-heading">
-          <p className="section-tag">Categories</p>
-          <h2>Browse the TIAMO assortment through separate category pages.</h2>
-        </div>
+        <div className="section-inner">
+          <div className="section-heading">
+            <p className="section-tag">Categories</p>
+            <h2>Browse the TIAMO assortment through separate category pages.</h2>
+          </div>
 
-        <div className="category-showcase">
-          {categories.map((category) => (
-            <RouteLink
-              key={category.slug}
-              to={buildCategoryPath(category.slug)}
-              onNavigate={onNavigate}
-              className="category-panel"
-            >
-              <img src={category.heroImage} alt={category.title} loading="lazy" />
-              <div className="category-panel__body">
-                <span>{String(category.products.length).padStart(2, '0')} items</span>
-                <h3>{category.title}</h3>
-                <p>{category.description}</p>
-              </div>
-            </RouteLink>
-          ))}
+          <div className="category-showcase">
+            {categories.map((category) => (
+              <RouteLink
+                key={category.slug}
+                to={buildCategoryPath(category.slug)}
+                onNavigate={onNavigate}
+                className="category-panel"
+              >
+                <img src={category.heroImage} alt={category.title} loading="lazy" />
+                <div className="category-panel__body">
+                  <span>{String(category.products.length).padStart(2, '0')} items</span>
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                </div>
+              </RouteLink>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section-shell">
-        <div className="section-heading">
-          <p className="section-tag">Featured products</p>
-          <h2>Selected products carried over from the original TIAMO homepage.</h2>
-        </div>
+        <div className="section-inner">
+          <div className="section-heading">
+            <p className="section-tag">Featured products</p>
+            <h2>Selected products carried over from the original TIAMO homepage.</h2>
+          </div>
 
-        <div className="product-grid">
-          {featuredProducts.map((product) => (
-            <article className="product-card" key={product.slug}>
-              <img src={product.image} alt={product.name} loading="lazy" />
-              <div className="product-card__body">
-                <span>{product.category}</span>
-                <h3>{product.name}</h3>
-              </div>
-            </article>
-          ))}
+          <div className="product-grid">
+            {featuredProducts.map((product) => (
+              <article className="product-card" key={product.slug}>
+                <img src={product.image} alt={product.name} loading="lazy" />
+                <div className="product-card__body">
+                  <span>{product.category}</span>
+                  <h3>{product.name}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section-shell contact-cta">
-        <div className="contact-cta__copy">
-          <p className="section-tag">Production and quality</p>
-          <h2>Quality control, selected raw material, and daily production discipline remain central.</h2>
-        </div>
-        <div className="quality-list">
-          {qualityHighlights.map((item) => (
-            <div className="quality-list__item" key={item}>
-              <p>{item}</p>
-            </div>
-          ))}
+        <div className="section-inner">
+          <div className="contact-cta__copy">
+            <p className="section-tag">Production and quality</p>
+            <h2>Quality control, selected raw material, and daily production discipline remain central.</h2>
+          </div>
+          <div className="quality-list">
+            {qualityHighlights.map((item) => (
+              <div className="quality-list__item" key={item}>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>
@@ -358,38 +370,42 @@ function AboutPage({ onNavigate }) {
       </section>
 
       <section className="facts-section compact-facts">
-        <div className="facts-grid">
-          {companyStats.map((item) => (
-            <article className="fact-card" key={item.label}>
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
-            </article>
-          ))}
+        <div className="section-inner">
+          <div className="facts-grid">
+            {companyStats.map((item) => (
+              <article className="fact-card" key={item.label}>
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       <section className="section-shell two-column-layout">
-        <article className="content-card">
-          <h2>Company story</h2>
-          {aboutContent.paragraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
-          ))}
-        </article>
-
-        <aside className="content-card accent-card">
-          <h2>Category access</h2>
-          <div className="side-links">
-            {categories.map((category) => (
-              <RouteLink
-                key={category.slug}
-                to={buildCategoryPath(category.slug)}
-                onNavigate={onNavigate}
-              >
-                {category.title}
-              </RouteLink>
+        <div className="section-inner">
+          <article className="content-card">
+            <h2>Company story</h2>
+            {aboutContent.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
-          </div>
-        </aside>
+          </article>
+
+          <aside className="content-card accent-card">
+            <h2>Category access</h2>
+            <div className="side-links">
+              {categories.map((category) => (
+                <RouteLink
+                  key={category.slug}
+                  to={buildCategoryPath(category.slug)}
+                  onNavigate={onNavigate}
+                >
+                  {category.title}
+                </RouteLink>
+              ))}
+            </div>
+          </aside>
+        </div>
       </section>
     </div>
   )
@@ -409,31 +425,33 @@ function ContactPage() {
       </section>
 
       <section className="section-shell contact-grid">
-        <article className="content-card">
-          <h2>Reach TIAMO</h2>
-          <div className="detail-list">
-            <div className="detail-row">
-              <span>Address</span>
-              <strong>{contactDetails.address}</strong>
+        <div className="section-inner">
+          <article className="content-card">
+            <h2>Reach TIAMO</h2>
+            <div className="detail-list">
+              <div className="detail-row">
+                <span>Address</span>
+                <strong>{contactDetails.address}</strong>
+              </div>
+              <div className="detail-row">
+                <span>Email</span>
+                <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+              </div>
+              <div className="detail-row">
+                <span>Phone</span>
+                <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
+              </div>
             </div>
-            <div className="detail-row">
-              <span>Email</span>
-              <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-            </div>
-            <div className="detail-row">
-              <span>Phone</span>
-              <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
-            </div>
-          </div>
-        </article>
+          </article>
 
-        <aside className="content-card accent-card">
-          <h2>Location</h2>
-          <p>{contactDetails.mapLabel}</p>
-          <a className="button button-primary" href={contactDetails.mapUrl} target="_blank" rel="noreferrer">
-            Open Google Maps
-          </a>
-        </aside>
+          <aside className="content-card accent-card">
+            <h2>Location</h2>
+            <p>{contactDetails.mapLabel}</p>
+            <a className="button button-primary" href={contactDetails.mapUrl} target="_blank" rel="noreferrer">
+              Open Google Maps
+            </a>
+          </aside>
+        </div>
       </section>
     </div>
   )
@@ -453,34 +471,38 @@ function CategoryPage({ category, onNavigate }) {
       </section>
 
       <section className="section-shell category-topline">
-        <div className="category-topline__summary">
-          <h2>{category.products.length} products in this category</h2>
-          <p>Images and product names are arranged from the original TIAMO category source.</p>
-        </div>
+        <div className="section-inner">
+          <div className="category-topline__summary">
+            <h2>{category.products.length} products in this category</h2>
+            <p>Images and product names are arranged from the original TIAMO category source.</p>
+          </div>
 
-        <div className="side-links compact">
-          {categories
-            .filter((item) => item.slug !== category.slug)
-            .slice(0, 4)
-            .map((item) => (
-              <RouteLink key={item.slug} to={buildCategoryPath(item.slug)} onNavigate={onNavigate}>
-                {item.title}
-              </RouteLink>
-            ))}
+          <div className="side-links compact">
+            {categories
+              .filter((item) => item.slug !== category.slug)
+              .slice(0, 4)
+              .map((item) => (
+                <RouteLink key={item.slug} to={buildCategoryPath(item.slug)} onNavigate={onNavigate}>
+                  {item.title}
+                </RouteLink>
+              ))}
+          </div>
         </div>
       </section>
 
       <section className="section-shell">
-        <div className="product-grid">
-          {category.products.map((product) => (
-            <article className="product-card" key={`${category.slug}-${product.slug}`}>
-              <img src={product.image} alt={product.name} loading="lazy" />
-              <div className="product-card__body">
-                <span>{category.title}</span>
-                <h3>{product.name}</h3>
-              </div>
-            </article>
-          ))}
+        <div className="section-inner">
+          <div className="product-grid">
+            {category.products.map((product) => (
+              <article className="product-card" key={`${category.slug}-${product.slug}`}>
+                <img src={product.image} alt={product.name} loading="lazy" />
+                <div className="product-card__body">
+                  <span>{category.title}</span>
+                  <h3>{product.name}</h3>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
     </div>
