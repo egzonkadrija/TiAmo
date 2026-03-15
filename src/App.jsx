@@ -5,7 +5,6 @@ import {
   categories,
   companyStats,
   contactDetails,
-  featuredProducts,
   qualityHighlights,
 } from './siteData'
 
@@ -311,27 +310,6 @@ function HomePage({ onNavigate }) {
                   <p>{category.description}</p>
                 </div>
               </RouteLink>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-shell">
-        <div className="section-inner">
-          <div className="section-heading">
-            <p className="section-tag">Featured products</p>
-            <h2>Selected products carried over from the original TIAMO homepage.</h2>
-          </div>
-
-          <div className="product-grid">
-            {featuredProducts.map((product) => (
-              <article className="product-card" key={product.slug}>
-                <img src={product.image} alt={product.name} loading="lazy" />
-                <div className="product-card__body">
-                  <span>{product.category}</span>
-                  <h3>{product.name}</h3>
-                </div>
-              </article>
             ))}
           </div>
         </div>
