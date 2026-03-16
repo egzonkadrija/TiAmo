@@ -207,14 +207,7 @@ function HomePage({ onNavigate }) {
       <section className="hero-banner" style={{ backgroundImage: `url(${aboutContent.image})` }}>
         <div className="hero-overlay">
           <div className="hero-panel">
-            <div className="hero-ribbon">Food that matters</div>
-            <p className="eyebrow">North Macedonia meat production</p>
-            <h1>Quality meat products for retail, horeca, and everyday supply.</h1>
-            <p className="hero-text">
-              TIAMO produces beef and chicken products for stores, restaurants, and consumers with
-              a broad category range, modern processing, and strong quality control.
-            </p>
-
+            <h1>Quality beef and chicken for retail and horeca.</h1>
             <div className="hero-actions">
               <RouteLink to="/about" onNavigate={onNavigate} className="button button-primary">
                 About TIAMO
@@ -262,7 +255,6 @@ function HomePage({ onNavigate }) {
                 <img src={category.heroImage} alt={category.title} loading="lazy" />
                 <div>
                   <strong>{category.title}</strong>
-                  <span>{String(category.products.length).padStart(2, '0')} products</span>
                 </div>
               </RouteLink>
             ))}
@@ -305,7 +297,6 @@ function HomePage({ onNavigate }) {
               >
                 <img src={category.heroImage} alt={category.title} loading="lazy" />
                 <div className="category-panel__body">
-                  <span>{String(category.products.length).padStart(2, '0')} items</span>
                   <h3>{category.title}</h3>
                   <p>{category.description}</p>
                 </div>
