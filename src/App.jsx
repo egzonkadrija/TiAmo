@@ -33,6 +33,33 @@ function buildCategoryPath(slug) {
   return `/categories/${slug}`
 }
 
+function buildProductPath(categorySlug, productSlug) {
+  return `/categories/${categorySlug}/products/${productSlug}`
+}
+
+function findCategoryAndProduct(pathname) {
+  const match = pathname.match(/^\/categories\/([^/]+)\/products\/([^/]+)$/)
+
+  if (!match) {
+    return null
+  }
+
+  const [, categorySlug, productSlug] = match
+  const category = categories.find((item) => item.slug === categorySlug)
+
+  if (!category) {
+    return null
+  }
+
+  const product = category.products.find((item) => item.slug === productSlug)
+
+  if (!product) {
+    return null
+  }
+
+  return { category, product }
+}
+
 function getPageTitle(pathname) {
   if (pathname === '/about') {
     return 'TIAMO | About'
@@ -40,6 +67,12 @@ function getPageTitle(pathname) {
 
   if (pathname === '/contact') {
     return 'TIAMO | Contact'
+  }
+
+  const productMatch = findCategoryAndProduct(pathname)
+
+  if (productMatch) {
+    return `TIAMO | ${productMatch.product.name}`
   }
 
   if (pathname.startsWith('/categories/')) {
@@ -86,6 +119,9 @@ function App() {
     content = <AboutPage onNavigate={navigate} />
   } else if (pathname === '/contact') {
     content = <ContactPage />
+  } else if (findCategoryAndProduct(pathname)) {
+    const { category, product } = findCategoryAndProduct(pathname)
+    content = <ProductPage category={category} product={product} onNavigate={navigate} />
   } else if (pathname.startsWith('/categories/')) {
     const slug = pathname.replace('/categories/', '')
     const category = categories.find((item) => item.slug === slug)
@@ -138,7 +174,7 @@ function App() {
                 key={category.slug}
                 to={categoryPath}
                 onNavigate={navigate}
-                className={pathname === categoryPath ? 'is-active' : ''}
+                className={pathname.startsWith(categoryPath) ? 'is-active' : ''}
               >
                 {category.title}
               </RouteLink>
@@ -463,15 +499,48 @@ function CategoryPage({ category, onNavigate }) {
         <div className="section-inner">
           <div className="product-grid">
             {category.products.map((product) => (
-              <article className="product-card" key={`${category.slug}-${product.slug}`}>
+              <RouteLink
+                key={`${category.slug}-${product.slug}`}
+                to={buildProductPath(category.slug, product.slug)}
+                onNavigate={onNavigate}
+                className="product-card"
+              >
                 <img src={product.image} alt={product.name} loading="lazy" />
                 <div className="product-card__body">
                   <span>{category.title}</span>
                   <h3>{product.name}</h3>
                 </div>
-              </article>
+              </RouteLink>
             ))}
           </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+function ProductPage({ category, product, onNavigate }) {
+  return (
+    <div className="page-content">
+      <section className="subpage-banner" style={{ backgroundImage: `url(${category.heroImage})` }}>
+        <div className="subpage-overlay">
+          <div className="subpage-copy">
+            <p className="section-tag">{category.title}</p>
+            <h1>{product.name}</h1>
+            <p>Open the full product image and return to the category when needed.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell">
+        <div className="section-inner product-view">
+          <RouteLink to={buildCategoryPath(category.slug)} onNavigate={onNavigate} className="button button-secondary">
+            Back to {category.title}
+          </RouteLink>
+
+          <a className="product-image-frame" href={product.image} target="_blank" rel="noreferrer">
+            <img src={product.image} alt={product.name} loading="eager" />
+          </a>
         </div>
       </section>
     </div>
