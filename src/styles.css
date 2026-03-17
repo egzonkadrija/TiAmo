@@ -295,7 +295,7 @@ img {
 
 .hero-layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1fr);
+  grid-template-columns: minmax(0, 0.72fr) minmax(480px, 1fr);
   align-items: center;
   gap: 40px;
   min-height: 620px;
@@ -315,33 +315,7 @@ img {
 }
 
 .hero-stage-static {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.hero-summary-card {
-  display: grid;
-  align-content: end;
-  min-height: 140px;
-  padding: 22px;
-  background: #ffffff;
-  border: 1px solid rgba(20, 33, 23, 0.08);
-  border-radius: 20px;
-}
-
-.hero-summary-card span {
-  color: var(--accent);
-  font-size: 0.76rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.hero-summary-card strong {
-  margin-top: 10px;
-  font-family: 'Sora', sans-serif;
-  font-size: clamp(1.45rem, 2vw, 2rem);
-  line-height: 1.08;
-  color: var(--text);
+  min-height: 520px;
 }
 
 .section-inner {
@@ -385,8 +359,14 @@ img {
 
 .home-hero .hero-panel {
   width: 100%;
-  max-width: 560px;
+  max-width: 500px;
   margin: 0;
+}
+
+.home-hero .section-tag,
+.home-hero .hero-panel h1,
+.home-hero .hero-text {
+  color: #ffffff;
 }
 
 .hero-ribbon {
@@ -1090,10 +1070,6 @@ img {
   .category-hero-layout {
     grid-template-columns: 1fr;
     gap: 24px;
-  }
-
-  .hero-stage-static {
-    grid-template-columns: 1fr;
   }
 
   .hero-panel,

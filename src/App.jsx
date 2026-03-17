@@ -290,20 +290,7 @@ function HomePage({ onNavigate }) {
               </div>
             </div>
 
-            <div className="hero-stage hero-stage-static" aria-hidden="true">
-              <div className="hero-summary-card">
-                <span>Founded</span>
-                <strong>2003</strong>
-              </div>
-              <div className="hero-summary-card">
-                <span>Capacity</span>
-                <strong>20 tons/day</strong>
-              </div>
-              <div className="hero-summary-card">
-                <span>Certifications</span>
-                <strong>HACCP & HALAL</strong>
-              </div>
-            </div>
+            <div className="hero-stage hero-stage-static" aria-hidden="true" />
           </div>
         </div>
       </section>
