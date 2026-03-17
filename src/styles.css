@@ -589,17 +589,13 @@ img {
 
 .focus-item {
   display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 12px;
+  grid-template-columns: 1fr;
+  gap: 0;
   align-items: start;
 }
 
 .focus-item span {
-  width: 10px;
-  height: 10px;
-  margin-top: 8px;
-  border-radius: 50%;
-  background: var(--accent-hover);
+  display: none;
 }
 
 .focus-item p {
@@ -614,7 +610,7 @@ img {
 
 .overview-card {
   display: grid;
-  grid-template-columns: 90px 1fr;
+  grid-template-columns: 130px minmax(0, 1fr);
   gap: 16px;
   align-items: center;
   padding: 20px 0;
@@ -623,8 +619,8 @@ img {
 }
 
 .overview-card img {
-  width: 90px;
-  height: 90px;
+  width: 130px;
+  height: 130px;
   object-fit: contain;
   background: #ffffff;
   border-radius: 18px;
@@ -1113,7 +1109,7 @@ img {
   }
 
   .overview-card {
-    grid-template-columns: 76px 1fr;
+    grid-template-columns: 96px minmax(0, 1fr);
   }
 
   .category-panel,
@@ -1133,8 +1129,8 @@ img {
   }
 
   .overview-card img {
-    width: 76px;
-    height: 76px;
+    width: 96px;
+    height: 96px;
   }
 
   .site-footer {
