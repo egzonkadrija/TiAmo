@@ -14,6 +14,7 @@ const primaryNavigation = [
 ]
 
 const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
+const productionQualityImage = 'https://tiamo.mk/wp-content/uploads/2021/06/about_compressed.jpg'
 
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') {
@@ -333,9 +334,14 @@ function HomePage({ onNavigate }) {
 
       <section className="section-shell contact-cta">
         <div className="section-inner">
-          <div className="contact-cta__copy">
-            <p className="section-tag">Production and quality</p>
-            <h2>Quality control, selected raw material, and daily production discipline remain central.</h2>
+          <div
+            className="contact-cta__copy"
+            style={{ '--contact-cta-image': `url(${productionQualityImage})` }}
+          >
+            <div className="contact-cta__copy-overlay">
+              <p className="section-tag">Production and quality</p>
+              <h2>Quality control, selected raw material, and daily production discipline remain central.</h2>
+            </div>
           </div>
           <div className="quality-list">
             {qualityHighlights.map((item) => (

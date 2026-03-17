@@ -607,7 +607,7 @@ img {
 
 .facts-section {
   padding: 56px var(--section-gutter);
-  background: #006b1f;
+  background: #1F2A24;
 }
 
 .compact-facts {
@@ -845,6 +845,29 @@ img {
   font-family: 'Sora', sans-serif;
   font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.06;
+}
+
+.contact-cta__copy {
+  min-height: 320px;
+  padding: 34px;
+  display: grid;
+  align-content: end;
+  background-color: #ffffff;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-image: var(--contact-cta-image);
+}
+
+.contact-cta__copy-overlay {
+  width: min(72%, 520px);
+  margin-inline: auto;
+}
+
+.contact-cta__copy-overlay .section-tag,
+.contact-cta__copy-overlay h2 {
+  color: #ffffff;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.32);
 }
 
 .quality-list {
@@ -1106,6 +1129,10 @@ img {
   .category-hero-layout {
     grid-template-columns: 1fr;
     gap: 24px;
+  }
+
+  .contact-cta__copy-overlay {
+    width: 100%;
   }
 
   .hero-panel,
