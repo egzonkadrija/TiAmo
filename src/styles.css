@@ -304,6 +304,7 @@ img {
   filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.2));
   transform-origin: center;
   transition: opacity 260ms ease;
+  animation: heroFloat 7.2s ease-in-out infinite;
 }
 
 .hero-product-back {
@@ -312,12 +313,14 @@ img {
   width: clamp(220px, 21vw, 340px);
   transform:
     translate3d(
-      calc(var(--hero-pointer-x) * -6px),
-      calc(var(--hero-scroll) * 20px + var(--hero-pointer-y) * -6px),
+      calc(var(--hero-pointer-x) * -14px),
+      calc(var(--hero-scroll) * 42px + var(--hero-pointer-y) * -14px),
       0
     )
     rotate(-4deg);
   opacity: 0.9;
+  animation-duration: 8.4s;
+  animation-delay: -1.2s;
 }
 
 .hero-product-front {
@@ -326,11 +329,13 @@ img {
   width: clamp(250px, 24vw, 380px);
   transform:
     translate3d(
-      calc(var(--hero-pointer-x) * 8px),
-      calc(var(--hero-scroll) * 24px + var(--hero-pointer-y) * 6px),
+      calc(var(--hero-pointer-x) * 18px),
+      calc(var(--hero-scroll) * 54px + var(--hero-pointer-y) * 14px),
       0
     )
     rotate(2deg);
+  animation-duration: 6.8s;
+  animation-delay: -0.8s;
 }
 
 .hero-product-side {
@@ -339,12 +344,14 @@ img {
   width: clamp(220px, 21vw, 340px);
   transform:
     translate3d(
-      calc(var(--hero-pointer-x) * 6px),
-      calc(var(--hero-scroll) * 22px + var(--hero-pointer-y) * 6px),
+      calc(var(--hero-pointer-x) * 16px),
+      calc(var(--hero-scroll) * 46px + var(--hero-pointer-y) * 12px),
       0
     )
     rotate(-3deg);
   opacity: 0.9;
+  animation-duration: 7.6s;
+  animation-delay: -2.2s;
 }
 
 .hero-product-top {
@@ -353,12 +360,14 @@ img {
   width: clamp(190px, 18vw, 290px);
   transform:
     translate3d(
-      calc(var(--hero-pointer-x) * -5px),
-      calc(var(--hero-scroll) * 18px + var(--hero-pointer-y) * -5px),
+      calc(var(--hero-pointer-x) * -12px),
+      calc(var(--hero-scroll) * 36px + var(--hero-pointer-y) * -12px),
       0
     )
     rotate(4deg);
   opacity: 0.82;
+  animation-duration: 8.8s;
+  animation-delay: -3s;
 }
 
 .hero-product-left {
@@ -367,12 +376,14 @@ img {
   width: clamp(180px, 17vw, 280px);
   transform:
     translate3d(
-      calc(var(--hero-pointer-x) * -5px),
-      calc(var(--hero-scroll) * 18px + var(--hero-pointer-y) * 5px),
+      calc(var(--hero-pointer-x) * -12px),
+      calc(var(--hero-scroll) * 34px + var(--hero-pointer-y) * 10px),
       0
     )
     rotate(-2deg);
   opacity: 0.88;
+  animation-duration: 7s;
+  animation-delay: -1.8s;
 }
 
 .hero-product-right {
@@ -381,12 +392,25 @@ img {
   width: clamp(210px, 20vw, 320px);
   transform:
     translate3d(
-      calc(var(--hero-pointer-x) * 5px),
-      calc(var(--hero-scroll) * 20px + var(--hero-pointer-y) * 5px),
+      calc(var(--hero-pointer-x) * 14px),
+      calc(var(--hero-scroll) * 40px + var(--hero-pointer-y) * 10px),
       0
     )
     rotate(3deg);
   opacity: 0.88;
+  animation-duration: 7.8s;
+  animation-delay: -2.8s;
+}
+
+@keyframes heroFloat {
+  0%,
+  100% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -12px;
+  }
 }
 
 .section-inner {

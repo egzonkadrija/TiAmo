@@ -14,13 +14,6 @@ const primaryNavigation = [
   { label: 'Contact', path: '/contact' },
 ]
 
-const marketFocus = [
-  'Retail stores and chilled displays',
-  'Restaurants and horeca supply',
-  'Direct consumer-ready products',
-  'Controlled daily production output',
-]
-
 const homeHeroProducts = [
   { className: 'hero-product-back', image: categories[5].products[1].image },
   { className: 'hero-product-front', image: categories[0].products[0].image },
@@ -361,44 +354,6 @@ function HomePage({ onNavigate }) {
               </RouteLink>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="overview-section">
-        <div className="section-inner overview-section__inner">
-          <article className="overview-copy">
-            <p className="section-tag">TIAMO overview</p>
-            <h2>Food production presented with a cleaner corporate structure.</h2>
-            <p>
-              The new layout shifts TIAMO away from a generic catalog feel and toward a corporate
-              presentation similar in rhythm to large food-group sites: clear overview copy, focused
-              metrics, structured category access, and cleaner page separation.
-            </p>
-            <div className="focus-list">
-              {marketFocus.map((item) => (
-                <div className="focus-item" key={item}>
-                  <span />
-                  <p>{item}</p>
-                </div>
-              ))}
-            </div>
-          </article>
-
-          <aside className="overview-cards">
-            {categories.slice(0, 4).map((category) => (
-              <RouteLink
-                key={category.slug}
-                to={buildCategoryPath(category.slug)}
-                onNavigate={onNavigate}
-                className="overview-card"
-              >
-                <img src={category.heroImage} alt={category.title} loading="lazy" />
-                <div>
-                  <strong>{category.title}</strong>
-                </div>
-              </RouteLink>
-            ))}
-          </aside>
         </div>
       </section>
 
