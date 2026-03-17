@@ -152,25 +152,44 @@ function App() {
               ))}
 
               <div className={`nav-products ${pathname.startsWith('/categories/') ? 'is-active' : ''}`}>
-                <button type="button" className="nav-products-trigger">
+                <button type="button" className="nav-products-trigger" aria-haspopup="true">
                   Products
                 </button>
 
                 <div className="products-dropdown">
-                  {categories.map((category) => {
-                    const categoryPath = buildCategoryPath(category.slug)
+                  <div className="products-dropdown-copy">
+                    <p className="products-dropdown-tag">Product categories</p>
+                    <strong>Browse the TIAMO assortment</strong>
+                    <span>Open a category page to view the available products.</span>
+                  </div>
 
-                    return (
-                      <RouteLink
-                        key={category.slug}
-                        to={categoryPath}
-                        onNavigate={navigate}
-                        className={pathname.startsWith(categoryPath) ? 'is-active' : ''}
-                      >
-                        {category.title}
-                      </RouteLink>
-                    )
-                  })}
+                  <div className="products-dropdown-grid">
+                    {categories.map((category) => {
+                      const categoryPath = buildCategoryPath(category.slug)
+
+                      return (
+                        <RouteLink
+                          key={category.slug}
+                          to={categoryPath}
+                          onNavigate={navigate}
+                          className={`products-dropdown-card ${
+                            pathname.startsWith(categoryPath) ? 'is-active' : ''
+                          }`}
+                        >
+                          <img
+                            className="products-dropdown-card-image"
+                            src={category.heroImage}
+                            alt={category.title}
+                            loading="lazy"
+                          />
+                          <div className="products-dropdown-card-body">
+                            <strong>{category.title}</strong>
+                            <span>{category.products.length} products</span>
+                          </div>
+                        </RouteLink>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             </nav>

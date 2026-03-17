@@ -197,6 +197,7 @@ img {
 .nav-products-trigger {
   display: inline-flex;
   align-items: center;
+  gap: 8px;
   min-height: 44px;
   padding: 10px 0;
   border: 0;
@@ -209,10 +210,25 @@ img {
   cursor: pointer;
 }
 
+.nav-products-trigger::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform 180ms ease;
+}
+
 .nav-products:hover .nav-products-trigger,
 .nav-products:focus-within .nav-products-trigger,
 .nav-products.is-active .nav-products-trigger {
   color: var(--accent);
+}
+
+.nav-products:hover .nav-products-trigger::after,
+.nav-products:focus-within .nav-products-trigger::after {
+  transform: translateY(1px) rotate(225deg);
 }
 
 .products-dropdown {
@@ -221,13 +237,14 @@ img {
   left: 50%;
   z-index: 20;
   display: grid;
-  grid-template-columns: repeat(7, max-content);
-  gap: 12px 18px;
-  min-width: max-content;
-  margin-top: 0;
-  padding: 18px 20px;
+  grid-template-columns: minmax(220px, 0.85fr) minmax(420px, 1.15fr);
+  gap: 24px;
+  width: min(860px, calc(100vw - 32px));
+  margin-top: 12px;
+  padding: 24px;
   background: #ffffff;
   border: 1px solid var(--border);
+  border-radius: 24px;
   box-shadow: var(--shadow);
   opacity: 0;
   pointer-events: none;
@@ -244,16 +261,99 @@ img {
   transform: translate(-50%, 0);
 }
 
-.products-dropdown a {
-  padding: 0;
-  font-size: 0.82rem;
-  font-weight: 700;
-  letter-spacing: 0.03em;
+.products-dropdown-copy {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding-right: 12px;
+}
+
+.products-dropdown-tag {
+  margin: 0;
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.products-dropdown-copy strong {
+  font-family: 'Sora', sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.15;
   color: var(--text);
 }
 
-.products-dropdown a:hover,
-.products-dropdown a.is-active {
+.products-dropdown-copy span {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.products-dropdown-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.products-dropdown-card {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(76, 175, 80, 0.06), rgba(15, 94, 168, 0.02)),
+    #ffffff;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.products-dropdown-card-image {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  padding: 8px;
+  border-radius: 16px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 247, 243, 0.92));
+}
+
+.products-dropdown-card-body {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.products-dropdown-card strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text);
+}
+
+.products-dropdown-card span {
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.products-dropdown-card:hover,
+.products-dropdown-card.is-active {
+  border-color: rgba(11, 143, 71, 0.3);
+  background:
+    linear-gradient(180deg, rgba(76, 175, 80, 0.12), rgba(15, 94, 168, 0.04)),
+    #ffffff;
+  transform: translateY(-2px);
+}
+
+.products-dropdown-card:hover strong,
+.products-dropdown-card.is-active strong {
   color: var(--accent);
 }
 
@@ -276,7 +376,7 @@ img {
 }
 
 .home-hero {
-  min-height: auto;
+  min-height: calc(100svh - 112px);
   background-color: #f3f7f3;
   background-position: center center;
   background-repeat: no-repeat;
@@ -319,6 +419,10 @@ img {
   align-items: center;
   gap: 24px;
   min-height: 620px;
+}
+
+.home-hero .hero-layout {
+  min-height: clamp(520px, calc(100svh - 240px), 640px);
 }
 
 .hero-stage {
@@ -1115,13 +1219,28 @@ img {
 
   .products-dropdown {
     position: static;
-    min-width: 0;
+    width: 100%;
     margin-top: 10px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
     opacity: 1;
     pointer-events: auto;
     transform: none;
     box-shadow: none;
+    border-radius: 20px;
+    padding: 18px;
+  }
+
+  .products-dropdown-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .products-dropdown-card {
+    grid-template-columns: 64px minmax(0, 1fr);
+  }
+
+  .products-dropdown-card-image {
+    width: 64px;
+    height: 64px;
   }
 
   .hero-overlay > .hero-panel,
