@@ -135,9 +135,6 @@ function App() {
         <div className="header-main">
           <RouteLink to="/" onNavigate={navigate} className="brand-lockup">
             <img className="brand-logo" src={tiamoLogo} alt="TIAMO logo" />
-            <span className="brand-copy">
-              <strong>TIAMO</strong>
-            </span>
           </RouteLink>
 
           <div className="header-actions">
