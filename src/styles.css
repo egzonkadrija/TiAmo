@@ -261,7 +261,10 @@ img {
 
 .home-hero {
   min-height: auto;
-  background: #f3f7f3;
+  background-color: #f3f7f3;
+  background-position: center right;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .subpage-banner {
@@ -302,9 +305,9 @@ img {
   position: relative;
   min-height: 520px;
   overflow: hidden;
-  background: linear-gradient(180deg, #ffffff 0%, #eef4ef 100%);
-  border: 1px solid var(--border);
-  border-radius: 28px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
   padding: 28px;
   display: grid;
   align-content: center;

@@ -14,6 +14,8 @@ const primaryNavigation = [
   { label: 'Contact', path: '/contact' },
 ]
 
+const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
+
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') {
     return '/'
@@ -261,7 +263,10 @@ function App() {
 function HomePage({ onNavigate }) {
   return (
     <div className="page-content">
-      <section className="hero-banner home-hero">
+      <section
+        className="hero-banner home-hero"
+        style={{ backgroundImage: `url(${homeHeroImage})` }}
+      >
         <div className="hero-overlay">
           <div className="section-inner hero-layout">
             <div className="hero-panel">
