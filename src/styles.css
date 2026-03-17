@@ -87,12 +87,15 @@ img {
 }
 
 .site-header {
+  position: sticky;
+  top: 0;
   background: var(--header);
   color: var(--text);
   overflow: visible;
-  z-index: 30;
+  z-index: 60;
   box-shadow: none;
   border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(12px);
 }
 
 .header-main {
