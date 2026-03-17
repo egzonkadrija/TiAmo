@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import tiamoLogo from '../assets/tiamo-logo.png'
 import {
   aboutContent,
@@ -12,15 +12,6 @@ const primaryNavigation = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
   { label: 'Contact', path: '/contact' },
-]
-
-const homeHeroProducts = [
-  { className: 'hero-product-back', image: categories[5].products[1].image },
-  { className: 'hero-product-front', image: categories[0].products[0].image },
-  { className: 'hero-product-side', image: categories[3].products[3].image },
-  { className: 'hero-product-top', image: categories[2].products[0].image },
-  { className: 'hero-product-left', image: categories[6].products[0].image },
-  { className: 'hero-product-right', image: categories[1].products[0].image },
 ]
 
 function normalizePath(pathname) {
@@ -141,8 +132,16 @@ function App() {
 
       <header className="site-header">
         <div className="header-topline">
-          <span>TIAMO Meat Industry</span>
-          <span>Gllumovo - Matka, Skopje</span>
+          <div className="utility-links">
+            <span>TIAMO Meat Industry</span>
+            <span>North Macedonia</span>
+            <span>HACCP & HALAL</span>
+          </div>
+
+          <div className="utility-links utility-links-right">
+            <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
+            <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
+          </div>
         </div>
 
         <div className="header-main">
@@ -153,18 +152,24 @@ function App() {
             </span>
           </RouteLink>
 
-          <nav className="primary-nav" aria-label="Primary">
-            {primaryNavigation.map((item) => (
-              <RouteLink
-                key={item.path}
-                to={item.path}
-                onNavigate={navigate}
-                className={pathname === item.path ? 'is-active' : ''}
-              >
-                {item.label}
-              </RouteLink>
-            ))}
-          </nav>
+          <div className="header-actions">
+            <nav className="primary-nav" aria-label="Primary">
+              {primaryNavigation.map((item) => (
+                <RouteLink
+                  key={item.path}
+                  to={item.path}
+                  onNavigate={navigate}
+                  className={pathname === item.path ? 'is-active' : ''}
+                >
+                  {item.label}
+                </RouteLink>
+              ))}
+            </nav>
+
+            <RouteLink to="/contact" onNavigate={navigate} className="button button-primary header-cta">
+              Contact
+            </RouteLink>
+          </div>
         </div>
 
         <nav className="category-nav" aria-label="Product categories">
@@ -193,8 +198,8 @@ function App() {
             <div className="footer-brand footer-column">
               <img className="footer-logo" src={tiamoLogo} alt="TIAMO logo" />
               <p>
-                TIAMO is presented here as a React-built corporate site with separate pages and
-                source-based product categories.
+                Beef and chicken products for retail, horeca, and daily supply with controlled
+                production and certified quality standards.
               </p>
             </div>
 
@@ -232,6 +237,20 @@ function App() {
                 <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
               </div>
             </div>
+
+            <div className="footer-column">
+              <h2>Quality</h2>
+              <div className="footer-links footer-links-text footer-links-plain">
+                <span>HACCP certified production</span>
+                <span>HALAL certified processes</span>
+                <span>Approx. 20 tons per day capacity</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="footer-bottom">
+            <span>TIAMO</span>
+            <span>Gllumovo - Matka, Skopje</span>
           </div>
         </div>
       </footer>
@@ -240,118 +259,45 @@ function App() {
 }
 
 function HomePage({ onNavigate }) {
-  const heroRef = useRef(null)
-
-  useEffect(() => {
-    const heroElement = heroRef.current
-
-    if (!heroElement) {
-      return undefined
-    }
-
-    let frameId = 0
-    let isDisposed = false
-    const motionState = {
-      currentScroll: 0,
-      targetScroll: 0,
-      currentX: 0,
-      targetX: 0,
-      currentY: 0,
-      targetY: 0,
-    }
-
-    const animateMotion = () => {
-      frameId = 0
-      motionState.currentScroll += (motionState.targetScroll - motionState.currentScroll) * 0.08
-      motionState.currentX += (motionState.targetX - motionState.currentX) * 0.08
-      motionState.currentY += (motionState.targetY - motionState.currentY) * 0.08
-
-      heroElement.style.setProperty('--hero-scroll', motionState.currentScroll.toFixed(3))
-      heroElement.style.setProperty('--hero-pointer-x', motionState.currentX.toFixed(3))
-      heroElement.style.setProperty('--hero-pointer-y', motionState.currentY.toFixed(3))
-
-      const shouldContinue =
-        Math.abs(motionState.targetScroll - motionState.currentScroll) > 0.001 ||
-        Math.abs(motionState.targetX - motionState.currentX) > 0.001 ||
-        Math.abs(motionState.targetY - motionState.currentY) > 0.001
-
-      if (!isDisposed && shouldContinue) {
-        frameId = window.requestAnimationFrame(animateMotion)
-      }
-    }
-
-    const requestMotionFrame = () => {
-      if (!frameId) {
-        frameId = window.requestAnimationFrame(animateMotion)
-      }
-    }
-
-    const updateScrollMotion = () => {
-      const rect = heroElement.getBoundingClientRect()
-      const progress = Math.max(-1, Math.min(1, (-rect.top || 0) / Math.max(rect.height, 1)))
-      motionState.targetScroll = progress
-      requestMotionFrame()
-    }
-
-    const updatePointerMotion = (event) => {
-      const rect = heroElement.getBoundingClientRect()
-      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2
-      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2
-
-      motionState.targetX = x
-      motionState.targetY = y
-      requestMotionFrame()
-    }
-
-    const resetPointerMotion = () => {
-      motionState.targetX = 0
-      motionState.targetY = 0
-      requestMotionFrame()
-    }
-
-    updateScrollMotion()
-    window.addEventListener('scroll', updateScrollMotion, { passive: true })
-    window.addEventListener('resize', updateScrollMotion)
-    heroElement.addEventListener('pointermove', updatePointerMotion)
-    heroElement.addEventListener('pointerleave', resetPointerMotion)
-
-    return () => {
-      isDisposed = true
-      if (frameId) {
-        window.cancelAnimationFrame(frameId)
-      }
-
-      window.removeEventListener('scroll', updateScrollMotion)
-      window.removeEventListener('resize', updateScrollMotion)
-      heroElement.removeEventListener('pointermove', updatePointerMotion)
-      heroElement.removeEventListener('pointerleave', resetPointerMotion)
-    }
-  }, [])
-
   return (
     <div className="page-content">
-      <section className="hero-banner" ref={heroRef}>
-        <div className="hero-stage" aria-hidden="true">
-          <div className="hero-glow hero-glow-left" />
-          <div className="hero-glow hero-glow-right" />
-          {homeHeroProducts.map((product) => (
-            <img key={product.className} className={`hero-product ${product.className}`} src={product.image} alt="" />
-          ))}
-        </div>
+      <section className="hero-banner home-hero">
         <div className="hero-overlay">
-          <div className="hero-panel">
-            <h1>Quality beef and chicken for retail and horeca.</h1>
-            <div className="hero-actions">
-              <RouteLink to="/about" onNavigate={onNavigate} className="button button-primary">
-                About TIAMO
-              </RouteLink>
-              <RouteLink
-                to={buildCategoryPath(categories[0].slug)}
-                onNavigate={onNavigate}
-                className="button button-secondary"
-              >
-                Product categories
-              </RouteLink>
+          <div className="section-inner hero-layout">
+            <div className="hero-panel">
+              <p className="section-tag">TIAMO Meat Industry</p>
+              <h1>Quality beef and chicken for retail and horeca.</h1>
+              <p className="hero-text">
+                Certified meat production for retail, horeca, and consumer supply with modern
+                processing and controlled daily output.
+              </p>
+              <div className="hero-actions">
+                <RouteLink to="/about" onNavigate={onNavigate} className="button button-primary">
+                  About TIAMO
+                </RouteLink>
+                <RouteLink
+                  to={buildCategoryPath(categories[0].slug)}
+                  onNavigate={onNavigate}
+                  className="button button-secondary"
+                >
+                  Product categories
+                </RouteLink>
+              </div>
+            </div>
+
+            <div className="hero-stage hero-stage-static" aria-hidden="true">
+              <div className="hero-summary-card">
+                <span>Founded</span>
+                <strong>2003</strong>
+              </div>
+              <div className="hero-summary-card">
+                <span>Capacity</span>
+                <strong>20 tons/day</strong>
+              </div>
+              <div className="hero-summary-card">
+                <span>Certifications</span>
+                <strong>HACCP & HALAL</strong>
+              </div>
             </div>
           </div>
         </div>
@@ -509,8 +455,21 @@ function ContactPage() {
           </article>
 
           <aside className="content-card accent-card">
-            <h2>Location</h2>
-            <p>{contactDetails.mapLabel}</p>
+            <h2>Contact details</h2>
+            <p>
+              TIAMO serves retail, horeca, and consumer supply from its production base in
+              Gllumovo - Matka, Skopje.
+            </p>
+            <div className="detail-list compact-detail-list">
+              <div className="detail-row">
+                <span>Certifications</span>
+                <strong>HACCP and HALAL</strong>
+              </div>
+              <div className="detail-row">
+                <span>Capacity</span>
+                <strong>About 20 tons per day</strong>
+              </div>
+            </div>
             <a className="button button-primary" href={contactDetails.mapUrl} target="_blank" rel="noreferrer">
               Open Google Maps
             </a>
@@ -524,12 +483,16 @@ function ContactPage() {
 function CategoryPage({ category, onNavigate }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner" style={{ backgroundImage: `url(${category.heroImage})` }}>
-        <div className="subpage-overlay">
-          <div className="subpage-copy">
+      <section className="subpage-banner category-page-hero">
+        <div className="section-inner category-hero-layout">
+          <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">TIAMO category</p>
             <h1>{category.title}</h1>
             <p>{category.description}</p>
+          </div>
+
+          <div className="category-hero-media">
+            <img src={category.heroImage} alt={category.title} loading="eager" />
           </div>
         </div>
       </section>
@@ -581,12 +544,16 @@ function CategoryPage({ category, onNavigate }) {
 function ProductPage({ category, product, onNavigate }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner" style={{ backgroundImage: `url(${category.heroImage})` }}>
-        <div className="subpage-overlay">
-          <div className="subpage-copy">
+      <section className="subpage-banner category-page-hero product-page-hero">
+        <div className="section-inner category-hero-layout">
+          <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">{category.title}</p>
             <h1>{product.name}</h1>
             <p>Open the full product image and return to the category when needed.</p>
+          </div>
+
+          <div className="category-hero-media product-hero-media">
+            <img src={product.image} alt={product.name} loading="eager" />
           </div>
         </div>
       </section>
