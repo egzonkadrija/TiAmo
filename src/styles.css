@@ -237,9 +237,9 @@ img {
   left: 50%;
   z-index: 20;
   display: grid;
-  grid-template-columns: minmax(220px, 0.85fr) minmax(420px, 1.15fr);
-  gap: 24px;
-  width: min(860px, calc(100vw - 32px));
+  grid-template-columns: 1fr;
+  gap: 0;
+  width: min(640px, calc(100vw - 32px));
   margin-top: 12px;
   padding: 24px;
   background: #ffffff;
@@ -259,35 +259,6 @@ img {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
-}
-
-.products-dropdown-copy {
-  display: grid;
-  align-content: start;
-  gap: 10px;
-  padding-right: 12px;
-}
-
-.products-dropdown-tag {
-  margin: 0;
-  color: var(--accent);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-
-.products-dropdown-copy strong {
-  font-family: 'Sora', sans-serif;
-  font-size: 1.2rem;
-  line-height: 1.15;
-  color: var(--text);
-}
-
-.products-dropdown-copy span {
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.7;
 }
 
 .products-dropdown-grid {

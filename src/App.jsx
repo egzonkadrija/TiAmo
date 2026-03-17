@@ -157,12 +157,6 @@ function App() {
                 </button>
 
                 <div className="products-dropdown">
-                  <div className="products-dropdown-copy">
-                    <p className="products-dropdown-tag">Product categories</p>
-                    <strong>Browse the TIAMO assortment</strong>
-                    <span>Open a category page to view the available products.</span>
-                  </div>
-
                   <div className="products-dropdown-grid">
                     {categories.map((category) => {
                       const categoryPath = buildCategoryPath(category.slug)
