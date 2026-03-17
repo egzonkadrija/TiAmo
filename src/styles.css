@@ -847,11 +847,26 @@ img {
   line-height: 1.06;
 }
 
+.contact-cta__media-block {
+  display: grid;
+  gap: 16px;
+}
+
+.contact-cta__title {
+  grid-column: 1 / -1;
+  padding-top: 22px;
+  margin-bottom: 6px;
+  text-align: center;
+  font-size: 0.98rem;
+  letter-spacing: 0.14em;
+  border-top: 1px solid var(--border);
+}
+
 .contact-cta__copy {
   min-height: 320px;
   padding: 34px;
   display: grid;
-  align-content: end;
+  align-content: start;
   background-color: #ffffff;
   background-position: center;
   background-repeat: no-repeat;
@@ -862,9 +877,9 @@ img {
 .contact-cta__copy-overlay {
   width: min(72%, 520px);
   margin-inline: auto;
+  text-align: center;
 }
 
-.contact-cta__copy-overlay .section-tag,
 .contact-cta__copy-overlay h2 {
   color: #ffffff;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.32);

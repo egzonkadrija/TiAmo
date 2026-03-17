@@ -334,14 +334,16 @@ function HomePage({ onNavigate }) {
 
       <section className="section-shell contact-cta">
         <div className="section-inner">
+          <p className="section-tag contact-cta__title">Production and quality</p>
+          <div className="contact-cta__media-block">
           <div
             className="contact-cta__copy"
             style={{ '--contact-cta-image': `url(${productionQualityImage})` }}
           >
             <div className="contact-cta__copy-overlay">
-              <p className="section-tag">Production and quality</p>
               <h2>Quality control, selected raw material, and daily production discipline remain central.</h2>
             </div>
+          </div>
           </div>
           <div className="quality-list">
             {qualityHighlights.map((item) => (
