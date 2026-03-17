@@ -1,6 +1,6 @@
 export const companyStats = [
   { value: '2003', label: 'Founded' },
-  { value: '20 t/day', label: 'Production capacity' },
+  { value: '20 ton a day', label: 'Production capacity' },
   { value: '55+', label: 'Employees' },
   { value: 'HACCP + HALAL', label: 'Certifications' },
 ]

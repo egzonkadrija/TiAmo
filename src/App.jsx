@@ -132,19 +132,6 @@ function App() {
       <div className="ambient ambient-right" />
 
       <header className="site-header">
-        <div className="header-topline">
-          <div className="utility-links">
-            <span>TIAMO Meat Industry</span>
-            <span>North Macedonia</span>
-            <span>HACCP & HALAL</span>
-          </div>
-
-          <div className="utility-links utility-links-right">
-            <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
-            <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
-          </div>
-        </div>
-
         <div className="header-main">
           <RouteLink to="/" onNavigate={navigate} className="brand-lockup">
             <img className="brand-logo" src={tiamoLogo} alt="TIAMO logo" />
@@ -309,7 +296,10 @@ function HomePage({ onNavigate }) {
 
           <div className="facts-grid">
             {companyStats.map((item) => (
-              <article className="fact-card" key={item.label}>
+              <article
+                className={`fact-card ${item.label === 'Certifications' ? 'fact-card-nowrap' : ''}`}
+                key={item.label}
+              >
                 <strong>{item.value}</strong>
                 <span>{item.label}</span>
               </article>
@@ -320,7 +310,7 @@ function HomePage({ onNavigate }) {
 
       <section className="section-shell muted-shell">
         <div className="section-inner">
-          <div className="section-heading">
+          <div className="section-heading center">
             <p className="section-tag">Categories</p>
             <h2>Browse the TIAMO assortment through separate category pages.</h2>
           </div>
@@ -380,7 +370,10 @@ function AboutPage({ onNavigate }) {
         <div className="section-inner">
           <div className="facts-grid">
             {companyStats.map((item) => (
-              <article className="fact-card" key={item.label}>
+              <article
+                className={`fact-card ${item.label === 'Certifications' ? 'fact-card-nowrap' : ''}`}
+                key={item.label}
+              >
                 <strong>{item.value}</strong>
                 <span>{item.label}</span>
               </article>

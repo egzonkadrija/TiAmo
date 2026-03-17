@@ -95,42 +95,16 @@ img {
   border-bottom: 1px solid var(--border);
 }
 
-.header-topline,
 .header-main {
   max-width: var(--content-width);
   margin: 0 auto;
   padding-inline: var(--section-gutter);
 }
 
-.header-topline {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  background: #eef4ef;
-  border-bottom: 1px solid rgba(20, 33, 23, 0.08);
-  font-size: 0.73rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(20, 33, 23, 0.56);
-}
-
-.utility-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
-  align-items: center;
-}
-
-.utility-links-right {
-  justify-content: flex-end;
-}
-
 .header-main {
   display: grid;
   grid-template-columns: var(--brand-column) 1fr;
-  align-items: end;
+  align-items: center;
   gap: 24px;
   padding-top: 18px;
   padding-bottom: 18px;
@@ -155,7 +129,7 @@ img {
 
 .brand-copy strong {
   font-family: 'Sora', sans-serif;
-  font-size: 1.05rem;
+  font-size: 1.12rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   color: var(--text);
@@ -177,7 +151,7 @@ img {
 .primary-nav {
   align-items: center;
   justify-content: flex-start;
-  align-self: end;
+  align-self: center;
 }
 
 .header-actions {
@@ -198,9 +172,9 @@ img {
 }
 
 .primary-nav a {
-  padding: 8px 0;
+  padding: 10px 0;
   border-radius: 0;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 600;
   color: rgba(20, 33, 23, 0.78);
 }
@@ -223,12 +197,12 @@ img {
 .nav-products-trigger {
   display: inline-flex;
   align-items: center;
-  min-height: 40px;
-  padding: 8px 0;
+  min-height: 44px;
+  padding: 10px 0;
   border: 0;
   background: transparent;
   font: inherit;
-  font-size: 0.88rem;
+  font-size: 1rem;
   font-weight: 600;
   line-height: 1;
   color: rgba(20, 33, 23, 0.78);
@@ -688,6 +662,11 @@ img {
   color: var(--text);
 }
 
+.fact-card-nowrap strong {
+  white-space: nowrap;
+  font-size: clamp(1.35rem, 1.8vw, 1.9rem);
+}
+
 .section-shell {
   padding: 56px var(--section-gutter);
   background: var(--surface);
@@ -1070,7 +1049,6 @@ img {
     padding-inline: 0;
   }
 
-  .header-topline,
   .header-main {
     padding-inline: 16px;
   }
