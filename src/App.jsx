@@ -11,7 +11,6 @@ import {
 const primaryNavigation = [
   { label: 'Home', path: '/' },
   { label: 'About', path: '/about' },
-  { label: 'Contact', path: '/contact' },
 ]
 
 const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
@@ -166,6 +165,29 @@ function App() {
                   {item.label}
                 </RouteLink>
               ))}
+
+              <div className={`nav-products ${pathname.startsWith('/categories/') ? 'is-active' : ''}`}>
+                <button type="button" className="nav-products-trigger">
+                  Products
+                </button>
+
+                <div className="products-dropdown">
+                  {categories.map((category) => {
+                    const categoryPath = buildCategoryPath(category.slug)
+
+                    return (
+                      <RouteLink
+                        key={category.slug}
+                        to={categoryPath}
+                        onNavigate={navigate}
+                        className={pathname.startsWith(categoryPath) ? 'is-active' : ''}
+                      >
+                        {category.title}
+                      </RouteLink>
+                    )
+                  })}
+                </div>
+              </div>
             </nav>
 
             <RouteLink to="/contact" onNavigate={navigate} className="button button-primary header-cta">
@@ -173,23 +195,6 @@ function App() {
             </RouteLink>
           </div>
         </div>
-
-        <nav className="category-nav" aria-label="Product categories">
-          {categories.map((category) => {
-            const categoryPath = buildCategoryPath(category.slug)
-
-            return (
-              <RouteLink
-                key={category.slug}
-                to={categoryPath}
-                onNavigate={navigate}
-                className={pathname.startsWith(categoryPath) ? 'is-active' : ''}
-              >
-                {category.title}
-              </RouteLink>
-            )
-          })}
-        </nav>
       </header>
 
       <main>{content}</main>
