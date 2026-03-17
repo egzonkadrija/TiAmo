@@ -231,6 +231,16 @@ img {
   background-size: cover;
 }
 
+.hero-banner {
+  --hero-scroll: 0;
+  --hero-pointer-x: 0;
+  --hero-pointer-y: 0;
+  background:
+    radial-gradient(circle at 18% 28%, rgba(9, 108, 173, 0.14), transparent 28%),
+    radial-gradient(circle at 78% 18%, rgba(0, 107, 31, 0.12), transparent 24%),
+    linear-gradient(135deg, #ffffff 0%, #f7fcff 48%, #eef8f2 100%);
+}
+
 .subpage-banner {
   min-height: 420px;
 }
@@ -251,6 +261,132 @@ img {
   background:
     linear-gradient(90deg, rgba(8, 58, 110, 0.58) 0%, rgba(8, 58, 110, 0.18) 46%, rgba(8, 58, 110, 0.06) 100%),
     linear-gradient(180deg, rgba(76, 175, 80, 0.05), rgba(8, 58, 110, 0.32));
+}
+
+.hero-overlay {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.94) 0%, rgba(255, 255, 255, 0.88) 36%, rgba(255, 255, 255, 0.26) 62%, rgba(255, 255, 255, 0) 100%);
+}
+
+.hero-stage {
+  position: absolute;
+  inset: 84px 0 0;
+  pointer-events: none;
+}
+
+.hero-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.7;
+}
+
+.hero-glow-left {
+  left: 18%;
+  top: 14%;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(9, 108, 173, 0.24), transparent 72%);
+}
+
+.hero-glow-right {
+  right: 10%;
+  top: 20%;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(0, 107, 31, 0.18), transparent 72%);
+}
+
+.hero-product {
+  position: absolute;
+  max-width: none;
+  object-fit: contain;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.2));
+  transform-origin: center;
+  transition: opacity 260ms ease;
+}
+
+.hero-product-back {
+  top: 26%;
+  right: 39%;
+  width: clamp(220px, 21vw, 340px);
+  transform:
+    translate3d(
+      calc(var(--hero-pointer-x) * -6px),
+      calc(var(--hero-scroll) * 20px + var(--hero-pointer-y) * -6px),
+      0
+    )
+    rotate(-4deg);
+  opacity: 0.9;
+}
+
+.hero-product-front {
+  top: 28%;
+  right: 22%;
+  width: clamp(250px, 24vw, 380px);
+  transform:
+    translate3d(
+      calc(var(--hero-pointer-x) * 8px),
+      calc(var(--hero-scroll) * 24px + var(--hero-pointer-y) * 6px),
+      0
+    )
+    rotate(2deg);
+}
+
+.hero-product-side {
+  left: 51%;
+  top: 31%;
+  width: clamp(220px, 21vw, 340px);
+  transform:
+    translate3d(
+      calc(var(--hero-pointer-x) * 6px),
+      calc(var(--hero-scroll) * 22px + var(--hero-pointer-y) * 6px),
+      0
+    )
+    rotate(-3deg);
+  opacity: 0.9;
+}
+
+.hero-product-top {
+  top: 22%;
+  right: 7%;
+  width: clamp(190px, 18vw, 290px);
+  transform:
+    translate3d(
+      calc(var(--hero-pointer-x) * -5px),
+      calc(var(--hero-scroll) * 18px + var(--hero-pointer-y) * -5px),
+      0
+    )
+    rotate(4deg);
+  opacity: 0.82;
+}
+
+.hero-product-left {
+  left: 34%;
+  top: 34%;
+  width: clamp(180px, 17vw, 280px);
+  transform:
+    translate3d(
+      calc(var(--hero-pointer-x) * -5px),
+      calc(var(--hero-scroll) * 18px + var(--hero-pointer-y) * 5px),
+      0
+    )
+    rotate(-2deg);
+  opacity: 0.88;
+}
+
+.hero-product-right {
+  right: -1%;
+  top: 33%;
+  width: clamp(210px, 20vw, 320px);
+  transform:
+    translate3d(
+      calc(var(--hero-pointer-x) * 5px),
+      calc(var(--hero-scroll) * 20px + var(--hero-pointer-y) * 5px),
+      0
+    )
+    rotate(3deg);
+  opacity: 0.88;
 }
 
 .section-inner {
@@ -288,6 +424,8 @@ img {
   padding: 0;
   border-radius: 0;
   background: transparent;
+  position: relative;
+  z-index: 2;
 }
 
 .hero-ribbon {
@@ -332,7 +470,7 @@ img {
 .hero-panel h1,
 .subpage-copy h1 {
   font-size: clamp(2.8rem, 6vw, 4.8rem);
-  color: #ffffff;
+  color: var(--text);
 }
 
 .hero-text,
@@ -914,6 +1052,47 @@ img {
   .hero-banner,
   .subpage-banner {
     min-height: 420px;
+  }
+
+  .hero-stage {
+    inset: 64px 0 0;
+    opacity: 0.82;
+  }
+
+  .hero-product-back {
+    top: 34%;
+    right: 46%;
+    width: 150px;
+  }
+
+  .hero-product-front {
+    top: 35%;
+    right: 26%;
+    width: 170px;
+  }
+
+  .hero-product-side {
+    left: 50%;
+    top: 41%;
+    width: 145px;
+  }
+
+  .hero-product-top {
+    top: 24%;
+    right: 10%;
+    width: 120px;
+  }
+
+  .hero-product-left {
+    left: 30%;
+    top: 38%;
+    width: 120px;
+  }
+
+  .hero-product-right {
+    right: -4%;
+    top: 40%;
+    width: 130px;
   }
 
   .hero-panel h1,

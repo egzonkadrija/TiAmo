@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import tiamoLogo from '../assets/tiamo-logo.png'
 import {
   aboutContent,
@@ -19,6 +19,15 @@ const marketFocus = [
   'Restaurants and horeca supply',
   'Direct consumer-ready products',
   'Controlled daily production output',
+]
+
+const homeHeroProducts = [
+  { className: 'hero-product-back', image: categories[5].products[1].image },
+  { className: 'hero-product-front', image: categories[0].products[0].image },
+  { className: 'hero-product-side', image: categories[3].products[3].image },
+  { className: 'hero-product-top', image: categories[2].products[0].image },
+  { className: 'hero-product-left', image: categories[6].products[0].image },
+  { className: 'hero-product-right', image: categories[1].products[0].image },
 ]
 
 function normalizePath(pathname) {
@@ -238,9 +247,104 @@ function App() {
 }
 
 function HomePage({ onNavigate }) {
+  const heroRef = useRef(null)
+
+  useEffect(() => {
+    const heroElement = heroRef.current
+
+    if (!heroElement) {
+      return undefined
+    }
+
+    let frameId = 0
+    let isDisposed = false
+    const motionState = {
+      currentScroll: 0,
+      targetScroll: 0,
+      currentX: 0,
+      targetX: 0,
+      currentY: 0,
+      targetY: 0,
+    }
+
+    const animateMotion = () => {
+      frameId = 0
+      motionState.currentScroll += (motionState.targetScroll - motionState.currentScroll) * 0.08
+      motionState.currentX += (motionState.targetX - motionState.currentX) * 0.08
+      motionState.currentY += (motionState.targetY - motionState.currentY) * 0.08
+
+      heroElement.style.setProperty('--hero-scroll', motionState.currentScroll.toFixed(3))
+      heroElement.style.setProperty('--hero-pointer-x', motionState.currentX.toFixed(3))
+      heroElement.style.setProperty('--hero-pointer-y', motionState.currentY.toFixed(3))
+
+      const shouldContinue =
+        Math.abs(motionState.targetScroll - motionState.currentScroll) > 0.001 ||
+        Math.abs(motionState.targetX - motionState.currentX) > 0.001 ||
+        Math.abs(motionState.targetY - motionState.currentY) > 0.001
+
+      if (!isDisposed && shouldContinue) {
+        frameId = window.requestAnimationFrame(animateMotion)
+      }
+    }
+
+    const requestMotionFrame = () => {
+      if (!frameId) {
+        frameId = window.requestAnimationFrame(animateMotion)
+      }
+    }
+
+    const updateScrollMotion = () => {
+      const rect = heroElement.getBoundingClientRect()
+      const progress = Math.max(-1, Math.min(1, (-rect.top || 0) / Math.max(rect.height, 1)))
+      motionState.targetScroll = progress
+      requestMotionFrame()
+    }
+
+    const updatePointerMotion = (event) => {
+      const rect = heroElement.getBoundingClientRect()
+      const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2
+      const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2
+
+      motionState.targetX = x
+      motionState.targetY = y
+      requestMotionFrame()
+    }
+
+    const resetPointerMotion = () => {
+      motionState.targetX = 0
+      motionState.targetY = 0
+      requestMotionFrame()
+    }
+
+    updateScrollMotion()
+    window.addEventListener('scroll', updateScrollMotion, { passive: true })
+    window.addEventListener('resize', updateScrollMotion)
+    heroElement.addEventListener('pointermove', updatePointerMotion)
+    heroElement.addEventListener('pointerleave', resetPointerMotion)
+
+    return () => {
+      isDisposed = true
+      if (frameId) {
+        window.cancelAnimationFrame(frameId)
+      }
+
+      window.removeEventListener('scroll', updateScrollMotion)
+      window.removeEventListener('resize', updateScrollMotion)
+      heroElement.removeEventListener('pointermove', updatePointerMotion)
+      heroElement.removeEventListener('pointerleave', resetPointerMotion)
+    }
+  }, [])
+
   return (
     <div className="page-content">
-      <section className="hero-banner" style={{ backgroundImage: `url(${aboutContent.image})` }}>
+      <section className="hero-banner" ref={heroRef}>
+        <div className="hero-stage" aria-hidden="true">
+          <div className="hero-glow hero-glow-left" />
+          <div className="hero-glow hero-glow-right" />
+          {homeHeroProducts.map((product) => (
+            <img key={product.className} className={`hero-product ${product.className}`} src={product.image} alt="" />
+          ))}
+        </div>
         <div className="hero-overlay">
           <div className="hero-panel">
             <h1>Quality beef and chicken for retail and horeca.</h1>
