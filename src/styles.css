@@ -305,6 +305,12 @@ img {
   background: #ffffff;
 }
 
+.products-dropdown-card-image-large {
+  width: 88px;
+  height: 88px;
+  padding: 2px;
+}
+
 .products-dropdown-card-body {
   display: grid;
   gap: 6px;

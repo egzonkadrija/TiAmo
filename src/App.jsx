@@ -208,7 +208,9 @@ function App() {
                           }`}
                         >
                           <img
-                            className="products-dropdown-card-image"
+                            className={`products-dropdown-card-image ${
+                              category.slug === 'sausages' ? 'products-dropdown-card-image-large' : ''
+                            }`}
                             src={category.heroImage}
                             alt={category.title}
                             loading="lazy"
