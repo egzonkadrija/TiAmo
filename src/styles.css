@@ -158,14 +158,17 @@ img {
   align-items: center;
   justify-content: center;
   align-self: center;
+  margin-inline: auto;
+  gap: 30px;
 }
 
 .header-actions {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   gap: 20px;
+  width: 100%;
 }
 
 .primary-nav a,
@@ -195,6 +198,7 @@ img {
 .header-cta {
   min-height: 44px;
   padding-inline: 20px;
+  margin-left: auto;
 }
 
 .nav-products {
@@ -285,9 +289,7 @@ img {
   padding: 14px 16px;
   border: 1px solid var(--border);
   border-radius: 18px;
-  background:
-    linear-gradient(180deg, rgba(76, 175, 80, 0.06), rgba(15, 94, 168, 0.02)),
-    #ffffff;
+  background: #ffffff;
   transition:
     border-color 180ms ease,
     background-color 180ms ease,
@@ -300,7 +302,7 @@ img {
   object-fit: contain;
   padding: 8px;
   border-radius: 16px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(243, 247, 243, 0.92));
+  background: #ffffff;
 }
 
 .products-dropdown-card-body {
@@ -327,9 +329,7 @@ img {
 .products-dropdown-card:hover,
 .products-dropdown-card.is-active {
   border-color: rgba(11, 143, 71, 0.3);
-  background:
-    linear-gradient(180deg, rgba(76, 175, 80, 0.12), rgba(15, 94, 168, 0.04)),
-    #ffffff;
+  background: #ffffff;
   transform: translateY(-2px);
 }
 
@@ -438,6 +438,11 @@ img {
   margin-left: calc(var(--brand-column) + 24px);
 }
 
+.about-banner .subpage-overlay > .subpage-copy {
+  width: min(var(--content-width), 100%);
+  margin-inline: auto;
+}
+
 .hero-panel,
 .subpage-copy,
 .overview-copy,
@@ -518,6 +523,15 @@ img {
 .subpage-copy h1 {
   font-size: clamp(2.8rem, 6vw, 4.8rem);
   color: var(--text);
+}
+
+.about-banner .subpage-copy h1 {
+  color: #ffffff;
+}
+
+.hero-title-line {
+  display: block;
+  white-space: nowrap;
 }
 
 .hero-text,
@@ -807,7 +821,7 @@ img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: contain;
-  background: #f7fcff;
+  background: #ffffff;
 }
 
 .category-panel,
@@ -1519,6 +1533,10 @@ img {
 }
 
 @media (max-width: 560px) {
+  .hero-title-line {
+    white-space: normal;
+  }
+
   .section-shell,
   .facts-section,
   .overview-section,

@@ -311,7 +311,11 @@ function HomePage({ onNavigate }) {
           <div className="section-inner hero-layout">
             <div className="hero-panel">
               <p className="section-tag">TIAMO Meat Industry</p>
-              <h1>Quality beef and chicken for retail and horeca.</h1>
+              <h1>
+                <span className="hero-title-line">Beef &amp; poultry.</span>
+                <span className="hero-title-line">Refined for</span>
+                <span className="hero-title-line">retail &amp; horeca</span>
+              </h1>
               <p className="hero-text">
                 Certified meat production for retail, horeca, and consumersprecision processing,
                 consistent excellence.
@@ -411,7 +415,7 @@ function HomePage({ onNavigate }) {
 function AboutPage({ onNavigate }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner" style={{ backgroundImage: `url(${aboutContent.image})` }}>
+      <section className="subpage-banner about-banner" style={{ backgroundImage: `url(${aboutContent.image})` }}>
         <div className="subpage-overlay">
           <div className="subpage-copy">
             <p className="section-tag">About TIAMO</p>
@@ -445,21 +449,6 @@ function AboutPage({ onNavigate }) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </article>
-
-          <aside className="content-card accent-card">
-            <h2>Category access</h2>
-            <div className="side-links">
-              {categories.map((category) => (
-                <RouteLink
-                  key={category.slug}
-                  to={buildCategoryPath(category.slug)}
-                  onNavigate={onNavigate}
-                >
-                  {category.title}
-                </RouteLink>
-              ))}
-            </div>
-          </aside>
         </div>
       </section>
     </div>

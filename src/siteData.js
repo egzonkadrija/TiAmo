@@ -35,7 +35,7 @@ export const featuredProducts = [
 export const aboutContent = {
   title: 'Where tradition and invention meet',
   intro:
-    'The About page on tiamo.mk presents TIAMO as a long-running local and national brand focused on quality, growth, and continuous improvement in meat processing.',
+    'We are a certified meat producer specializing in beef and poultry for retail and horeca. Through modern processing and strict quality control, we deliver consistent, safe, and reliable supply.',
   image: 'https://tiamo.mk/wp-content/uploads/2021/06/about_compressed.jpg',
   paragraphs: [
     'Since 1997, the company "Tiamo" represents one of the most popular local and national brands, and is a synonym of quality and long-term tradition.',
