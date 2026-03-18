@@ -161,6 +161,7 @@ img {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
 }
 
@@ -225,12 +226,14 @@ img {
 
 .nav-products:hover .nav-products-trigger,
 .nav-products:focus-within .nav-products-trigger,
+.nav-products.is-open .nav-products-trigger,
 .nav-products.is-active .nav-products-trigger {
   color: var(--accent);
 }
 
 .nav-products:hover .nav-products-trigger::after,
-.nav-products:focus-within .nav-products-trigger::after {
+.nav-products:focus-within .nav-products-trigger::after,
+.nav-products.is-open .nav-products-trigger::after {
   transform: translateY(1px) rotate(225deg);
 }
 
@@ -258,7 +261,8 @@ img {
 }
 
 .nav-products:hover .products-dropdown,
-.nav-products:focus-within .products-dropdown {
+.nav-products:focus-within .products-dropdown,
+.nav-products.is-open .products-dropdown {
   opacity: 1;
   pointer-events: auto;
   transform: translate(-50%, 0);
@@ -1132,7 +1136,37 @@ img {
   margin-bottom: 22px;
 }
 
+@media (max-width: 1280px) {
+  .header-main {
+    grid-template-columns: minmax(180px, 220px) 1fr;
+    gap: 20px;
+  }
+
+  .hero-layout {
+    grid-template-columns: minmax(0, 0.68fr) minmax(420px, 0.95fr);
+  }
+}
+
 @media (max-width: 1100px) {
+  .header-main {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: 16px;
+  }
+
+  .brand-lockup,
+  .header-actions {
+    width: 100%;
+  }
+
+  .header-actions {
+    justify-content: center;
+  }
+
+  .primary-nav {
+    justify-content: center;
+  }
+
   .hero-layout,
   .overview-section__inner,
   .contact-cta > .section-inner,
@@ -1160,6 +1194,135 @@ img {
   }
 }
 
+@media (max-width: 920px) {
+  .site-header {
+    backdrop-filter: blur(8px);
+  }
+
+  .header-main {
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+
+  .header-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .primary-nav {
+    justify-content: center;
+    gap: 10px 18px;
+  }
+
+  .nav-products {
+    width: 100%;
+  }
+
+  .nav-products-trigger {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .products-dropdown {
+    position: static;
+    display: none;
+    width: 100%;
+    margin-top: 10px;
+    transform: none;
+    box-shadow: none;
+    border-radius: 20px;
+    padding: 18px;
+  }
+
+  .nav-products:hover .products-dropdown,
+  .nav-products:focus-within .products-dropdown {
+    transform: none;
+  }
+
+  .nav-products.is-open .products-dropdown {
+    display: grid;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+  }
+
+  .products-dropdown-grid,
+  .facts-grid,
+  .category-showcase,
+  .product-grid,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hero-banner {
+    min-height: auto;
+  }
+
+  .home-hero {
+    min-height: auto;
+  }
+
+  .hero-layout,
+  .category-hero-layout,
+  .contact-cta > .section-inner,
+  .two-column-layout > .section-inner,
+  .contact-grid > .section-inner,
+  .category-topline > .section-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-layout {
+    min-height: auto;
+    gap: 12px;
+  }
+
+  .home-hero .hero-layout {
+    min-height: auto;
+  }
+
+  .hero-stage,
+  .hero-stage-static {
+    display: none;
+  }
+
+  .home-hero .hero-panel,
+  .hero-overlay > .hero-panel,
+  .subpage-overlay > .subpage-copy {
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .hero-overlay,
+  .subpage-overlay {
+    padding-block: 48px;
+  }
+
+  .overview-copy,
+  .content-card {
+    padding: 28px;
+  }
+
+  .category-panel {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .contact-cta__copy {
+    min-height: 420px;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .contact-cta__copy-overlay {
+    width: min(100%, 560px);
+  }
+
+  .footer-grid {
+    gap: 24px;
+  }
+}
+
 @media (max-width: 760px) {
   .page-shell {
     padding-inline: 0;
@@ -1169,19 +1332,10 @@ img {
     padding-inline: 16px;
   }
 
-  .header-topline,
-  .header-main {
-    display: grid;
-  }
-
-  .header-topline {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .header-main {
     grid-template-columns: 1fr;
     gap: 12px;
+    justify-items: stretch;
   }
 
   .header-actions,
@@ -1189,19 +1343,6 @@ img {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .products-dropdown {
-    position: static;
-    width: 100%;
-    margin-top: 10px;
-    grid-template-columns: 1fr;
-    opacity: 1;
-    pointer-events: auto;
-    transform: none;
-    box-shadow: none;
-    border-radius: 20px;
-    padding: 18px;
   }
 
   .products-dropdown-grid {
@@ -1227,16 +1368,23 @@ img {
     width: 84px;
   }
 
+  .primary-nav,
+  .header-actions {
+    width: 100%;
+  }
+
+  .primary-nav {
+    justify-content: flex-start;
+  }
+
+  .header-cta {
+    width: 100%;
+  }
+
   .hero-overlay,
   .subpage-overlay {
     padding: 20px;
     align-items: end;
-  }
-
-  .hero-layout,
-  .category-hero-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
   }
 
   .contact-cta__copy-overlay {
@@ -1269,10 +1417,6 @@ img {
   .facts-grid,
   .category-showcase,
   .product-grid,
-  .contact-cta > .section-inner,
-  .two-column-layout > .section-inner,
-  .contact-grid > .section-inner,
-  .category-topline > .section-inner,
   .footer-grid {
     grid-template-columns: 1fr;
   }
@@ -1308,5 +1452,58 @@ img {
 
   .product-image-frame {
     padding: 18px;
+  }
+}
+
+@media (max-width: 560px) {
+  .section-shell,
+  .facts-section,
+  .overview-section,
+  .site-footer {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .button,
+  .hero-actions .button {
+    width: 100%;
+  }
+
+  .hero-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+  .overview-card {
+    grid-template-columns: 80px minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .overview-card img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .fact-card {
+    padding: 20px 14px;
+  }
+
+  .fact-card strong {
+    font-size: 1.8rem;
+  }
+
+  .contact-cta__copy {
+    min-height: 320px;
+    padding: 22px;
+  }
+
+  .quality-list__item,
+  .content-card,
+  .overview-copy {
+    padding: 20px;
+  }
+
+  .footer-bottom {
+    font-size: 0.72rem;
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import tiamoLogo from '../assets/tiamo-logo.png'
 import {
   aboutContent,
@@ -14,7 +14,7 @@ const primaryNavigation = [
 ]
 
 const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
-const productionQualityImage = 'https://tiamo.mk/wp-content/uploads/2021/06/about_compressed.jpg'
+const productionQualityImage = 'https://tiamo.mk/wp-content/uploads/2022/02/beef-ramsteak-1-1024x1024.png'
 
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') {
@@ -81,10 +81,13 @@ function getPageTitle(pathname) {
 
 function App() {
   const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname))
+  const [isProductsOpen, setIsProductsOpen] = useState(false)
+  const navProductsRef = useRef(null)
 
   useEffect(() => {
     const onPopState = () => {
       setPathname(normalizePath(window.location.pathname))
+      setIsProductsOpen(false)
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
@@ -96,6 +99,28 @@ function App() {
     document.title = getPageTitle(pathname)
   }, [pathname])
 
+  useEffect(() => {
+    const onPointerDown = (event) => {
+      if (!navProductsRef.current?.contains(event.target)) {
+        setIsProductsOpen(false)
+      }
+    }
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setIsProductsOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', onPointerDown)
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('pointerdown', onPointerDown)
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [])
+
   function navigate(nextPath) {
     const normalizedPath = normalizePath(nextPath)
 
@@ -105,6 +130,7 @@ function App() {
 
     window.history.pushState({}, '', normalizedPath)
     setPathname(normalizedPath)
+    setIsProductsOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -151,8 +177,19 @@ function App() {
                 </RouteLink>
               ))}
 
-              <div className={`nav-products ${pathname.startsWith('/categories/') ? 'is-active' : ''}`}>
-                <button type="button" className="nav-products-trigger" aria-haspopup="true">
+              <div
+                ref={navProductsRef}
+                className={`nav-products ${pathname.startsWith('/categories/') ? 'is-active' : ''} ${
+                  isProductsOpen ? 'is-open' : ''
+                }`}
+              >
+                <button
+                  type="button"
+                  className="nav-products-trigger"
+                  aria-haspopup="true"
+                  aria-expanded={isProductsOpen}
+                  onClick={() => setIsProductsOpen((current) => !current)}
+                >
                   Products
                 </button>
 
