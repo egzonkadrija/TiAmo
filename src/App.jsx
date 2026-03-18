@@ -313,8 +313,8 @@ function HomePage({ onNavigate }) {
               <p className="section-tag">TIAMO Meat Industry</p>
               <h1>Quality beef and chicken for retail and horeca.</h1>
               <p className="hero-text">
-                Certified meat production for retail, horeca, and consumer supply with modern
-                processing and controlled daily output.
+                Certified meat production for retail, horeca, and consumersprecision processing,
+                consistent excellence.
               </p>
               <div className="hero-actions">
                 <RouteLink to="/about" onNavigate={onNavigate} className="button button-primary">

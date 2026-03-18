@@ -114,9 +114,12 @@ img {
 }
 
 .brand-lockup {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 0;
+  width: fit-content;
+  justify-self: start;
+  line-height: 0;
 }
 
 .brand-logo {
