@@ -56,10 +56,25 @@ export const contactDetails = {
 }
 
 export const qualityHighlights = [
-  'Selected beef and chicken meat remain the base of the portfolio.',
-  'The source summary references marbling, freshness, and feeding quality as selection criteria.',
-  'The company operates with modern processing technology and controlled food-safety standards.',
-  'The business serves stores, restaurants, and consumers with a broad processed-meat assortment.',
+  {
+    title: 'Selected raw material',
+    description: 'Selected beef and chicken meat remain the base of the portfolio.',
+  },
+  {
+    title: 'Quality selection',
+    description:
+      'The source summary references marbling, freshness, and feeding quality as selection criteria.',
+  },
+  {
+    title: 'Controlled processing',
+    description:
+      'The company operates with modern processing technology and controlled food-safety standards.',
+  },
+  {
+    title: 'Reliable supply',
+    description:
+      'The business serves stores, restaurants, and consumers with a broad processed-meat assortment.',
+  },
 ]
 
 export const categories = [

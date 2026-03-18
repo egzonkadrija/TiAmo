@@ -14,7 +14,7 @@ const primaryNavigation = [
 ]
 
 const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
-const productionQualityImage = 'https://tiamo.mk/wp-content/uploads/2022/02/beef-ramsteak-1-1024x1024.png'
+const productionQualityImage = aboutContent.image
 
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') {
@@ -401,8 +401,9 @@ function HomePage({ onNavigate }) {
           </div>
           <div className="quality-list">
             {qualityHighlights.map((item) => (
-              <div className="quality-list__item" key={item}>
-                <p>{item}</p>
+              <div className="quality-list__item" key={item.title}>
+                <span>{item.title}</span>
+                <p>{item.description}</p>
               </div>
             ))}
           </div>
