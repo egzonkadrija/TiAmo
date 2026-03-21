@@ -380,6 +380,13 @@ img {
     linear-gradient(180deg, rgba(76, 175, 80, 0.06), rgba(15, 94, 168, 0.04));
 }
 
+.about-banner {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-color: #d8d4ce;
+}
+
 .hero-overlay,
 .subpage-overlay {
   display: flex;
@@ -447,6 +454,10 @@ img {
 .about-banner .subpage-overlay > .subpage-copy {
   width: min(var(--content-width), 100%);
   margin-inline: auto;
+}
+
+.about-banner .subpage-overlay {
+  background: transparent;
 }
 
 .hero-panel,
