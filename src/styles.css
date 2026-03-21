@@ -399,10 +399,7 @@ img {
 
 .about-banner {
   min-height: 300px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-color: transparent;
+  background: var(--background-soft);
 }
 
 .hero-overlay,
@@ -477,7 +474,7 @@ img {
 
 .about-banner .subpage-overlay {
   background: transparent;
-  align-items: flex-start;
+  align-items: center;
   padding-block: 36px;
 }
 
@@ -566,7 +563,26 @@ img {
 .about-banner .subpage-copy h1,
 .about-banner .subpage-copy p,
 .about-banner .subpage-copy .section-tag {
-  color: #ffffff;
+  color: #142117;
+}
+
+.about-story-media {
+  display: grid;
+  align-content: start;
+  align-self: stretch;
+  min-height: 0;
+  padding-top: 34px;
+}
+
+.about-story-media img {
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  object-fit: cover;
+}
+
+.two-column-layout .content-card h2 {
+  margin-top: 0;
 }
 
 .hero-title-line {

@@ -454,7 +454,7 @@ function HomePage({ onNavigate }) {
 function AboutPage({ onNavigate }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner about-banner" style={{ backgroundImage: `url(${aboutUsImage})` }}>
+      <section className="subpage-banner about-banner">
         <div className="subpage-overlay">
           <div className="subpage-copy">
             <p className="section-tag">About TIAMO</p>
@@ -485,6 +485,10 @@ function AboutPage({ onNavigate }) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </article>
+
+          <aside className="about-story-media">
+            <img src={aboutUsImage} alt="TIAMO product presentation" loading="lazy" />
+          </aside>
         </div>
       </section>
     </div>
