@@ -314,6 +314,23 @@ function App() {
 }
 
 function HomePage({ onNavigate }) {
+  const sliderRef = useRef(null)
+
+  function handleSlide(direction) {
+    const slider = sliderRef.current
+
+    if (!slider) {
+      return
+    }
+
+    const card = slider.querySelector('.category-slider__card')
+    const sliderStyles = window.getComputedStyle(slider)
+    const gap = Number.parseFloat(sliderStyles.columnGap || sliderStyles.gap || '0')
+    const amount = card ? card.getBoundingClientRect().width + gap : slider.clientWidth * 0.5
+
+    slider.scrollBy({ left: direction * amount, behavior: 'smooth' })
+  }
+
   return (
     <div className="page-content">
       <section
@@ -378,21 +395,42 @@ function HomePage({ onNavigate }) {
             <p>Explore beef and poultry lines by category.</p>
           </div>
 
-          <div className="category-showcase">
-            {categories.map((category) => (
-              <RouteLink
-                key={category.slug}
-                to={buildCategoryPath(category.slug)}
-                onNavigate={onNavigate}
-                className="category-panel"
+          <div className="category-slider">
+            <div className="category-slider__controls">
+              <button
+                type="button"
+                className="button button-secondary category-slider__button"
+                aria-label="Show previous categories"
+                onClick={() => handleSlide(-1)}
               >
-                <img src={category.heroImage} alt={category.title} loading="lazy" />
-                <div className="category-panel__body">
-                  <h3>{category.title}</h3>
-                  <p>{category.description}</p>
-                </div>
-              </RouteLink>
-            ))}
+                &larr;
+              </button>
+              <button
+                type="button"
+                className="button button-secondary category-slider__button"
+                aria-label="Show next categories"
+                onClick={() => handleSlide(1)}
+              >
+                &rarr;
+              </button>
+            </div>
+
+            <div ref={sliderRef} className="category-slider__track">
+              {categories.map((category) => (
+                <RouteLink
+                  key={category.slug}
+                  to={buildCategoryPath(category.slug)}
+                  onNavigate={onNavigate}
+                  className="category-panel category-slider__card"
+                >
+                  <img src={category.heroImage} alt={category.title} loading="lazy" />
+                  <div className="category-panel__body">
+                    <h3>{category.title}</h3>
+                    <p>{category.description}</p>
+                  </div>
+                </RouteLink>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -569,22 +607,6 @@ function ContactPage() {
 }
 
 function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
-  const sliderRef = useRef(null)
-
-  function handleSlide(direction) {
-    const slider = sliderRef.current
-
-    if (!slider) {
-      return
-    }
-
-    const card = slider.querySelector('.product-slider__card')
-    const gap = 20
-    const amount = card ? card.getBoundingClientRect().width + gap : slider.clientWidth * 0.8
-
-    slider.scrollBy({ left: direction * amount, behavior: 'smooth' })
-  }
-
   return (
     <div className="page-content">
       <section className="subpage-banner category-page-hero">
@@ -618,31 +640,13 @@ function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
 
       <section className="section-shell">
         <div className="section-inner">
-          <div className="product-slider">
-            <div className="product-slider__controls">
-              <button
-                type="button"
-                className="button button-secondary product-slider__button"
-                onClick={() => handleSlide(-1)}
-              >
-                Previous
-              </button>
-              <button
-                type="button"
-                className="button button-secondary product-slider__button"
-                onClick={() => handleSlide(1)}
-              >
-                Next
-              </button>
-            </div>
-
-            <div ref={sliderRef} className="product-slider__track">
+          <div className="product-grid">
             {category.products.map((product) => (
               <RouteLink
                 key={`${category.slug}-${product.slug}`}
                 to={buildProductPath(category.slug, product.slug)}
                 onNavigate={onNavigate}
-                className="product-card product-slider__card"
+                className="product-card"
               >
                 <img src={product.image} alt={product.name} loading="lazy" />
                 <div className="product-card__body">
@@ -651,7 +655,6 @@ function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
                 </div>
               </RouteLink>
             ))}
-            </div>
           </div>
         </div>
       </section>
