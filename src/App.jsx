@@ -253,10 +253,7 @@ function App() {
           <div className="footer-grid">
             <div className="footer-brand footer-column">
               <img className="footer-logo" src={tiamoLogo} alt="TIAMO logo" />
-              <p>
-                Beef and chicken products for retail, horeca, and daily supply with controlled
-                production and certified quality standards.
-              </p>
+              <p>Certified beef &amp; poultry. Reliable daily supply.</p>
             </div>
 
             <div className="footer-column">
@@ -265,21 +262,6 @@ function App() {
                 {primaryNavigation.map((item) => (
                   <RouteLink key={item.path} to={item.path} onNavigate={navigate}>
                     {item.label}
-                  </RouteLink>
-                ))}
-              </div>
-            </div>
-
-            <div className="footer-column">
-              <h2>Categories</h2>
-              <div className="footer-links footer-links-plain">
-                {categories.slice(0, 6).map((category) => (
-                  <RouteLink
-                    key={category.slug}
-                    to={buildCategoryPath(category.slug)}
-                    onNavigate={navigate}
-                  >
-                    {category.title}
                   </RouteLink>
                 ))}
               </div>
