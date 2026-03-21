@@ -208,6 +208,7 @@ function App() {
                 } ${
                   isProductsOpen ? 'is-open' : ''
                 }`}
+                onMouseLeave={() => setIsProductsOpen(false)}
               >
                 <div className="nav-products-controls">
                   <RouteLink

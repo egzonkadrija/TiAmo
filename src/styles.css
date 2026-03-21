@@ -927,12 +927,42 @@ img {
   overflow-x: auto;
   padding-bottom: 10px;
   scroll-snap-type: x proximity;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-slider__track::-webkit-scrollbar {
+  display: none;
 }
 
 .category-slider__card {
   flex: 0 0 calc((100% - 24px) / 2);
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  padding: 18px;
+  border: 1px solid var(--border);
+  background: #ffffff;
   scroll-snap-align: start;
+}
+
+.category-slider__card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  background: #ffffff;
+}
+
+.category-slider__card .category-panel__body {
+  padding: 18px 4px 4px;
+}
+
+.category-slider__card:hover {
+  border-color: rgba(11, 143, 71, 0.38);
+}
+
+.category-slider__card:hover .category-panel__body h3 {
+  color: var(--accent);
 }
 
 .category-panel,
