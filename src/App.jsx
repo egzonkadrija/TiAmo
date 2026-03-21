@@ -15,6 +15,14 @@ const primaryNavigation = [
 
 const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
 const productionQualityImage = aboutContent.image
+const factsStats = [
+  ...companyStats,
+  {
+    value: `${categories.length}`,
+    label: 'Product categories',
+    note: 'Across retail and horeca needs.',
+  },
+]
 
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') {
@@ -282,14 +290,6 @@ function App() {
               </div>
             </div>
 
-            <div className="footer-column">
-              <h2>Quality</h2>
-              <div className="footer-links footer-links-text footer-links-plain">
-                <span>HACCP certified production</span>
-                <span>HALAL certified processes</span>
-                <span>Approx. 20 tons per day capacity</span>
-              </div>
-            </div>
           </div>
 
           <div className="footer-bottom">
@@ -345,17 +345,15 @@ function HomePage({ onNavigate }) {
         <div className="section-inner">
           <div className="section-heading center">
             <p className="section-tag">Facts and figures</p>
-            <h2>Core numbers up front, in the style of a company overview rather than a landing page.</h2>
+            <h2>Production, capacity, and compliance in one view.</h2>
           </div>
 
           <div className="facts-grid">
-            {companyStats.map((item) => (
-              <article
-                className={`fact-card ${item.label === 'Certifications' ? 'fact-card-nowrap' : ''}`}
-                key={item.label}
-              >
+            {factsStats.map((item) => (
+              <article className="fact-card" key={item.label}>
                 <strong>{item.value}</strong>
-                <span>{item.label}</span>
+                <span className="fact-card__label">{item.label}</span>
+                <p className="fact-card__note">{item.note}</p>
               </article>
             ))}
           </div>
@@ -366,7 +364,7 @@ function HomePage({ onNavigate }) {
         <div className="section-inner">
           <div className="section-heading center">
             <p className="section-tag">Categories</p>
-            <h2>Browse the TIAMO assortment through separate category pages.</h2>
+            <h2>Explore TIAMO products by category.</h2>
           </div>
 
           <div className="category-showcase">
@@ -397,7 +395,7 @@ function HomePage({ onNavigate }) {
             style={{ '--contact-cta-image': `url(${productionQualityImage})` }}
           >
             <div className="contact-cta__copy-overlay">
-              <h2>Quality control, selected raw material, and daily production discipline remain central.</h2>
+              <h2>Quality. Sourcing. Consistency.</h2>
             </div>
           </div>
           </div>
@@ -431,13 +429,11 @@ function AboutPage({ onNavigate }) {
       <section className="facts-section compact-facts">
         <div className="section-inner">
           <div className="facts-grid">
-            {companyStats.map((item) => (
-              <article
-                className={`fact-card ${item.label === 'Certifications' ? 'fact-card-nowrap' : ''}`}
-                key={item.label}
-              >
+            {factsStats.map((item) => (
+              <article className="fact-card" key={item.label}>
                 <strong>{item.value}</strong>
-                <span>{item.label}</span>
+                <span className="fact-card__label">{item.label}</span>
+                <p className="fact-card__note">{item.note}</p>
               </article>
             ))}
           </div>

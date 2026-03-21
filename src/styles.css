@@ -746,30 +746,46 @@ img {
 
 .facts-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
 }
 
 .fact-card {
-  padding: 26px 22px;
-  border-radius: 0;
-  text-align: center;
-  background: transparent;
+  padding: 28px 24px 24px;
+  border-radius: 22px;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: none;
 }
 
 .fact-card strong {
   display: block;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   font-family: 'Sora', sans-serif;
-  font-size: 2.2rem;
+  font-size: clamp(2.35rem, 3.6vw, 3.4rem);
   font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
   color: var(--text);
 }
 
-.fact-card-nowrap strong {
-  white-space: nowrap;
-  font-size: clamp(1.35rem, 1.8vw, 1.9rem);
+.fact-card__label {
+  display: block;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.fact-card__note {
+  margin: 0;
+  max-width: 18ch;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  line-height: 1.45;
 }
 
 .section-shell {
@@ -955,7 +971,8 @@ img {
 .contact-cta__media-block {
   display: grid;
   gap: 16px;
-  align-self: start;
+  align-self: stretch;
+  min-height: 420px;
 }
 
 .contact-cta__title {
@@ -969,7 +986,8 @@ img {
 }
 
 .contact-cta__copy {
-  min-height: 360px;
+  min-height: 420px;
+  height: 100%;
   padding: 34px;
   display: grid;
   align-content: end;
@@ -999,9 +1017,9 @@ img {
   display: grid;
   grid-template-rows: repeat(4, 1fr);
   gap: 14px;
-  align-self: start;
+  align-self: stretch;
   margin-top: 0;
-  min-height: 360px;
+  min-height: 420px;
 }
 
 .quality-list__item {
@@ -1032,7 +1050,7 @@ img {
 
 .contact-cta > .section-inner {
   grid-template-columns: 0.95fr 1.05fr;
-  align-items: start;
+  align-items: stretch;
 }
 
 .contact-cta__media-block,

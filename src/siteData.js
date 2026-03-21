@@ -1,8 +1,24 @@
 export const companyStats = [
-  { value: '2003', label: 'Founded' },
-  { value: '20 ton a day', label: 'Production capacity' },
-  { value: '55+', label: 'Employees' },
-  { value: 'HACCP + HALAL', label: 'Certifications' },
+  {
+    value: '1997',
+    label: 'Founded',
+    note: 'Since 1997 in Skopje.',
+  },
+  {
+    value: '20 tons',
+    label: 'Daily capacity',
+    note: 'Current facility output benchmark.',
+  },
+  {
+    value: '55+',
+    label: 'Employees',
+    note: 'Across production and logistics.',
+  },
+  {
+    value: '2',
+    label: 'Certifications',
+    note: 'HACCP and HALAL certified.',
+  },
 ]
 
 export const featuredProducts = [
