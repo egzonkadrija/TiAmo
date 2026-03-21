@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import aboutUsImage from '../assets/homehero_compress.jpg'
 import tiamoLogo from '../assets/tiamo-logo.png'
 import {
   aboutContent,
@@ -405,12 +406,11 @@ function HomePage({ onNavigate }) {
 function AboutPage({ onNavigate }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner about-banner" style={{ backgroundImage: `url(${aboutContent.image})` }}>
+      <section className="subpage-banner about-banner" style={{ backgroundImage: `url(${aboutUsImage})` }}>
         <div className="subpage-overlay">
           <div className="subpage-copy">
             <p className="section-tag">About TIAMO</p>
             <h1>{aboutContent.title}</h1>
-            <p>{aboutContent.intro}</p>
           </div>
         </div>
       </section>

@@ -383,8 +383,8 @@ img {
 .about-banner {
   background-position: center center;
   background-repeat: no-repeat;
-  background-size: contain;
-  background-color: #d8d4ce;
+  background-size: cover;
+  background-color: transparent;
 }
 
 .hero-overlay,
@@ -458,6 +458,7 @@ img {
 
 .about-banner .subpage-overlay {
   background: transparent;
+  align-items: flex-start;
 }
 
 .hero-panel,
@@ -542,7 +543,9 @@ img {
   color: var(--text);
 }
 
-.about-banner .subpage-copy h1 {
+.about-banner .subpage-copy h1,
+.about-banner .subpage-copy p,
+.about-banner .subpage-copy .section-tag {
   color: #ffffff;
 }
 
@@ -983,6 +986,16 @@ img {
 .category-topline > .section-inner {
   display: grid;
   gap: 22px;
+}
+
+.two-column-layout > .section-inner {
+  max-width: 920px;
+}
+
+.two-column-layout .content-card {
+  width: min(920px, 100%);
+  margin-inline: auto;
+  text-align: left;
 }
 
 .contact-cta__copy h2 {

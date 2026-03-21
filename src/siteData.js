@@ -49,7 +49,7 @@ export const featuredProducts = [
 ]
 
 export const aboutContent = {
-  title: 'Where tradition and invention meet',
+  title: 'Where quality meets control.',
   intro:
     'We are a certified meat producer specializing in beef and poultry for retail and horeca. Through modern processing and strict quality control, we deliver consistent, safe, and reliable supply.',
   image: 'https://tiamo.mk/wp-content/uploads/2021/06/about_compressed.jpg',
