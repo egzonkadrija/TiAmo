@@ -87,8 +87,7 @@ img {
 }
 
 .site-header {
-  position: sticky;
-  top: 0;
+  position: relative;
   background: var(--header);
   color: var(--text);
   overflow: visible;
@@ -381,6 +380,7 @@ img {
 }
 
 .about-banner {
+  min-height: 300px;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -452,13 +452,15 @@ img {
 }
 
 .about-banner .subpage-overlay > .subpage-copy {
-  width: min(var(--content-width), 100%);
+  width: min(calc(var(--content-width) - (var(--section-gutter) * 2)), 100%);
+  max-width: none;
   margin-inline: auto;
 }
 
 .about-banner .subpage-overlay {
   background: transparent;
   align-items: flex-start;
+  padding-block: 36px;
 }
 
 .hero-panel,
@@ -743,8 +745,13 @@ img {
 }
 
 .compact-facts {
-  padding-top: 0;
+  padding-top: 24px;
   background: transparent;
+}
+
+.compact-facts .fact-card {
+  background: #ffffff;
+  border-color: rgba(20, 33, 23, 0.12);
 }
 
 .facts-section .section-tag,
@@ -813,6 +820,12 @@ img {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   line-height: 1.45;
+}
+
+.facts-section.compact-facts .fact-card strong,
+.facts-section.compact-facts .fact-card span,
+.facts-section.compact-facts .fact-card__note {
+  color: #142117;
 }
 
 .section-shell {
@@ -988,13 +1001,7 @@ img {
   gap: 22px;
 }
 
-.two-column-layout > .section-inner {
-  max-width: 920px;
-}
-
 .two-column-layout .content-card {
-  width: min(920px, 100%);
-  margin-inline: auto;
   text-align: left;
 }
 

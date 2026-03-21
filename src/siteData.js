@@ -54,11 +54,9 @@ export const aboutContent = {
     'We are a certified meat producer specializing in beef and poultry for retail and horeca. Through modern processing and strict quality control, we deliver consistent, safe, and reliable supply.',
   image: 'https://tiamo.mk/wp-content/uploads/2021/06/about_compressed.jpg',
   paragraphs: [
-    'Since 1997, the company "Tiamo" represents one of the most popular local and national brands, and is a synonym of quality and long-term tradition.',
-    'From the modest beginnings of meat processing and production, through continuous focus and improvements, "Tiamo" successfully has expanded its production lines and market presence.',
-    'With secure strategic and developmental steps, the company has managed to grow its production capabilities and its workforce.',
-    '"Tiamo" constantly implements significant investments in the industry of meat processing, enabling regular supply of the market with superior quality meat products.',
-    'One of the basic principles of the company remains customer satisfaction and correct relations with all cooperating parties.',
+    'Since 1997, TIAMO has grown into a recognized local and national brand, known for quality and long-standing tradition. What began as a modest meat processing operation has developed into a modern production company through continuous improvement and careful expansion.',
+    'With steady growth in production capacity and a dedicated workforce, TIAMO has strengthened its presence in the market. Ongoing investments in processing technology allow the company to maintain consistent supply and high product standards.',
+    'Built on reliability and trust, TIAMO remains committed to customer satisfaction and strong, professional relationships with all partners.',
   ],
 }
 

@@ -432,7 +432,7 @@ function AboutPage({ onNavigate }) {
       <section className="section-shell two-column-layout">
         <div className="section-inner">
           <article className="content-card">
-            <h2>Company story</h2>
+            <h2>Our Story</h2>
             {aboutContent.paragraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
