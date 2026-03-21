@@ -78,6 +78,10 @@ function getPageTitle(pathname) {
     return 'TIAMO | Contact'
   }
 
+  if (pathname === '/products') {
+    return 'TIAMO | Products'
+  }
+
   const productMatch = findCategoryAndProduct(pathname)
 
   if (productMatch) {
@@ -97,13 +101,11 @@ function App() {
   const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname))
   const [isProductsOpen, setIsProductsOpen] = useState(false)
   const navProductsRef = useRef(null)
-  const pendingSectionScrollRef = useRef(null)
 
   useEffect(() => {
     const onPopState = () => {
       setPathname(normalizePath(window.location.pathname))
       setIsProductsOpen(false)
-      pendingSectionScrollRef.current = null
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
@@ -113,23 +115,6 @@ function App() {
 
   useEffect(() => {
     document.title = getPageTitle(pathname)
-  }, [pathname])
-
-  useEffect(() => {
-    if (pathname !== '/' || !pendingSectionScrollRef.current) {
-      return
-    }
-
-    const sectionId = pendingSectionScrollRef.current
-    pendingSectionScrollRef.current = null
-
-    requestAnimationFrame(() => {
-      const section = document.getElementById(sectionId)
-
-      if (section) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      }
-    })
   }, [pathname])
 
   useEffect(() => {
@@ -167,26 +152,12 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
-  function navigateToSection(nextPath, sectionId) {
-    const normalizedPath = normalizePath(nextPath)
-    const section = document.getElementById(sectionId)
-
-    if (normalizedPath === pathname && section) {
-      setIsProductsOpen(false)
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
-      return
-    }
-
-    pendingSectionScrollRef.current = sectionId
-    window.history.pushState({}, '', normalizedPath)
-    setPathname(normalizedPath)
-    setIsProductsOpen(false)
-  }
-
   let content = <HomePage onNavigate={navigate} />
 
   if (pathname === '/about') {
     content = <AboutPage onNavigate={navigate} />
+  } else if (pathname === '/products') {
+    content = <ProductsPage onNavigate={navigate} />
   } else if (pathname === '/contact') {
     content = <ContactPage />
   } else if (findCategoryAndProduct(pathname)) {
@@ -199,7 +170,7 @@ function App() {
       <CategoryPage
         category={category}
         onNavigate={navigate}
-        onNavigateToProducts={() => navigateToSection('/', PRODUCTS_SECTION_ID)}
+        onNavigateToProducts={() => navigate('/products')}
       />
     ) : (
       <NotFoundPage onNavigate={navigate} />
@@ -232,21 +203,22 @@ function App() {
 
               <div
                 ref={navProductsRef}
-                className={`nav-products ${pathname.startsWith('/categories/') ? 'is-active' : ''} ${
+                className={`nav-products ${
+                  pathname === '/products' || pathname.startsWith('/categories/') ? 'is-active' : ''
+                } ${
                   isProductsOpen ? 'is-open' : ''
                 }`}
               >
                 <div className="nav-products-controls">
-                  <a
-                    href={`/#${PRODUCTS_SECTION_ID}`}
-                    className={`nav-products-link ${pathname.startsWith('/categories/') ? 'is-active' : ''}`}
-                    onClick={(event) => {
-                      event.preventDefault()
-                      navigateToSection('/', PRODUCTS_SECTION_ID)
-                    }}
+                  <RouteLink
+                    to="/products"
+                    onNavigate={navigate}
+                    className={`nav-products-link ${
+                      pathname === '/products' || pathname.startsWith('/categories/') ? 'is-active' : ''
+                    }`}
                   >
                     Products
-                  </a>
+                  </RouteLink>
 
                   <button
                     type="button"
@@ -493,6 +465,53 @@ function AboutPage({ onNavigate }) {
   )
 }
 
+function ProductsPage({ onNavigate }) {
+  return (
+    <div className="page-content">
+      <section className="subpage-banner category-page-hero">
+        <div className="section-inner category-hero-layout">
+          <div className="subpage-copy subpage-copy-solid">
+            <p className="section-tag">Products</p>
+            <h1>Browse TIAMO products.</h1>
+            <p>Open any category to explore the full product range.</p>
+          </div>
+
+          <div className="category-hero-media">
+            <img src={categories[0].heroImage} alt="TIAMO products" loading="eager" />
+          </div>
+        </div>
+      </section>
+
+      <section className="section-shell muted-shell">
+        <div className="section-inner">
+          <div className="section-heading center">
+            <p className="section-tag">Categories</p>
+            <h2>Browse products by category.</h2>
+            <p>Select a category to view the available products.</p>
+          </div>
+
+          <div className="category-showcase">
+            {categories.map((category) => (
+              <RouteLink
+                key={category.slug}
+                to={buildCategoryPath(category.slug)}
+                onNavigate={onNavigate}
+                className="category-panel"
+              >
+                <img src={category.heroImage} alt={category.title} loading="lazy" />
+                <div className="category-panel__body">
+                  <h3>{category.title}</h3>
+                  <p>{category.description}</p>
+                </div>
+              </RouteLink>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
 function ContactPage() {
   return (
     <div className="page-content">
@@ -550,6 +569,22 @@ function ContactPage() {
 }
 
 function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
+  const sliderRef = useRef(null)
+
+  function handleSlide(direction) {
+    const slider = sliderRef.current
+
+    if (!slider) {
+      return
+    }
+
+    const card = slider.querySelector('.product-slider__card')
+    const gap = 20
+    const amount = card ? card.getBoundingClientRect().width + gap : slider.clientWidth * 0.8
+
+    slider.scrollBy({ left: direction * amount, behavior: 'smooth' })
+  }
+
   return (
     <div className="page-content">
       <section className="subpage-banner category-page-hero">
@@ -583,13 +618,31 @@ function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
 
       <section className="section-shell">
         <div className="section-inner">
-          <div className="product-grid">
+          <div className="product-slider">
+            <div className="product-slider__controls">
+              <button
+                type="button"
+                className="button button-secondary product-slider__button"
+                onClick={() => handleSlide(-1)}
+              >
+                Previous
+              </button>
+              <button
+                type="button"
+                className="button button-secondary product-slider__button"
+                onClick={() => handleSlide(1)}
+              >
+                Next
+              </button>
+            </div>
+
+            <div ref={sliderRef} className="product-slider__track">
             {category.products.map((product) => (
               <RouteLink
                 key={`${category.slug}-${product.slug}`}
                 to={buildProductPath(category.slug, product.slug)}
                 onNavigate={onNavigate}
-                className="product-card"
+                className="product-card product-slider__card"
               >
                 <img src={product.image} alt={product.name} loading="lazy" />
                 <div className="product-card__body">
@@ -598,6 +651,7 @@ function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
                 </div>
               </RouteLink>
             ))}
+            </div>
           </div>
         </div>
       </section>
