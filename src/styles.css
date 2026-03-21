@@ -891,7 +891,7 @@ img {
 .product-grid,
 .contact-grid {
   display: grid;
-  gap: 20px;
+  gap: 24px;
 }
 
 .category-showcase {
@@ -910,6 +910,7 @@ img {
   align-items: center;
   overflow: hidden;
   border-radius: 0;
+  transition: border-color 180ms ease, background-color 180ms ease;
 }
 
 .category-panel img,
@@ -945,16 +946,26 @@ img {
 
 .category-panel__body h3,
 .product-card__body h3 {
-  margin: 10px 0 10px;
+  margin: 0 0 10px;
   font-family: 'Sora', sans-serif;
-  font-size: 1.35rem;
-  line-height: 1.18;
+  font-size: 1.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
 .category-panel__body p,
 .quality-list__item p {
   margin: 0;
-  line-height: 1.75;
+  max-width: 34ch;
+  line-height: 1.68;
+}
+
+.category-panel:hover {
+  border-top-color: rgba(11, 143, 71, 0.38);
+}
+
+.category-panel:hover .category-panel__body h3 {
+  color: var(--accent);
 }
 
 .contact-cta {
@@ -1094,7 +1105,7 @@ img {
 
 .quality-list {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 14px;
   align-self: stretch;
   margin-top: 0;
@@ -1114,10 +1125,10 @@ img {
 .quality-list__item span {
   color: var(--accent);
   font-family: 'Sora', sans-serif;
-  font-size: 0.74rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  text-transform: none;
 }
 
 .quality-list__item p {

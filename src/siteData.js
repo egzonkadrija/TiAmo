@@ -72,19 +72,15 @@ export const contactDetails = {
 export const qualityHighlights = [
   {
     title: 'Selected sourcing',
-    description: 'Beef and poultry sourced to consistent internal quality standards.',
+    description: 'Beef and poultry sourced to consistent internal standards.',
   },
   {
-    title: 'Controlled intake',
-    description: 'Raw material checked before entering processing.',
-  },
-  {
-    title: 'Disciplined production',
-    description: 'Modern processing with repeatable food-safety control points.',
+    title: 'Controlled processing',
+    description: 'Raw material checked and processed through defined food-safety controls.',
   },
   {
     title: 'Reliable delivery',
-    description: 'Prepared for retail shelves and horeca service without quality drift.',
+    description: 'Prepared for retail shelves and horeca service with consistent quality.',
   },
 ]
 
@@ -92,7 +88,7 @@ export const categories = [
   {
     slug: 'fresh-meats',
     title: 'Fresh Meats',
-    description: 'Fresh beef cuts and prepared products for daily retail and horeca supply.',
+    description: 'Fresh beef cuts and prepared meats for daily retail and horeca supply.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2022/02/beef-ramsteak-1-1024x1024.png',
     products: [
       {
@@ -135,7 +131,7 @@ export const categories = [
   {
     slug: 'dried-meats',
     title: 'Dried Meats',
-    description: 'Smoked and dried beef and poultry products with a stronger traditional profile.',
+    description: 'Smoked and dried beef and poultry lines with a stronger traditional profile.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/Rripe-1024x1024.png',
     products: [
       {
@@ -163,7 +159,7 @@ export const categories = [
   {
     slug: 'salami',
     title: 'Salami',
-    description: 'Packaged salami lines suited to retail shelves and everyday commercial demand.',
+    description: 'Packaged salami lines for retail shelves and everyday commercial demand.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/pileskigradisalama-1024x1024.png',
     products: [
       {
@@ -211,7 +207,7 @@ export const categories = [
   {
     slug: 'sausages',
     title: 'Sausages',
-    description: 'Classic and premium sausage products for broad retail and horeca use.',
+    description: 'Classic and premium sausage lines for retail counters and horeca menus.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/Cajna-govedska-1024x1024.png',
     products: [
       {
@@ -259,7 +255,7 @@ export const categories = [
   {
     slug: 'hot-dogs',
     title: 'Hot Dogs',
-    description: 'Beef and chicken hot dog products for fast-moving retail and food service.',
+    description: 'Beef and chicken hot dog lines for fast retail and food service demand.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/beef-hot-dog-1024x1024.png',
     products: [
       {
@@ -277,7 +273,7 @@ export const categories = [
   {
     slug: 'marinated-meats',
     title: 'Marinated Meats',
-    description: 'Prepared chicken products for quicker kitchen prep and consistent service.',
+    description: 'Prepared chicken lines for faster kitchen prep and consistent service.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/Pileski-stek-so-barbekju-sos-1-1024x1024.png',
     products: [
       {
@@ -295,7 +291,7 @@ export const categories = [
   {
     slug: 'sliced-meats',
     title: 'Sliced Meats',
-    description: 'Sliced and packaged meats designed for convenience, counters, and display cases.',
+    description: 'Sliced and packaged meats for convenience, counters, and display cases.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/05/bosanski-sudzuk-1024x1024.png',
     products: [
       {

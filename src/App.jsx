@@ -399,10 +399,7 @@ function HomePage({ onNavigate }) {
           <div className="section-heading center">
             <p className="section-tag">Categories</p>
             <h2>Built for retail and horeca.</h2>
-            <p>
-              Explore beef and poultry lines organized for faster browsing across the TIAMO
-              assortment.
-            </p>
+            <p>Explore beef and poultry lines by category.</p>
           </div>
 
           <div className="category-showcase">
@@ -426,15 +423,12 @@ function HomePage({ onNavigate }) {
 
       <section className="section-shell contact-cta">
         <div className="section-inner">
-          <p className="section-tag contact-cta__title">Production process</p>
+          <p className="section-tag contact-cta__title">Controlled production</p>
           <div className="contact-cta__media-block">
           <div
             className="contact-cta__copy"
             style={{ '--contact-cta-image': `url(${productionQualityImage})` }}
           >
-            <div className="contact-cta__copy-overlay">
-              <h2>Quality. Sourcing. Consistency.</h2>
-            </div>
           </div>
           </div>
           <div className="quality-list">
