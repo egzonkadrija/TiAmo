@@ -398,7 +398,7 @@ function HomePage({ onNavigate }) {
         <div className="section-inner">
           <div className="section-heading center">
             <p className="section-tag">Categories</p>
-            <h2>Category structure built for retail and horeca.</h2>
+            <h2>Built for retail and horeca.</h2>
             <p>
               Explore beef and poultry lines organized for faster browsing across the TIAMO
               assortment.
