@@ -24,6 +24,10 @@ const factsStats = [
   },
 ]
 
+function getProductIntro(category, product) {
+  return `${product.name} from the TIAMO ${category.title.toLowerCase()} range.`
+}
+
 function normalizePath(pathname) {
   if (!pathname || pathname === '/') {
     return '/'
@@ -315,23 +319,22 @@ function HomePage({ onNavigate }) {
               <p className="section-tag">TIAMO Meat Industry</p>
               <h1>
                 <span className="hero-title-line">Beef &amp; poultry.</span>
-                <span className="hero-title-line">Refined for</span>
-                <span className="hero-title-line">retail &amp; horeca</span>
+                <span className="hero-title-line">Built for retail</span>
+                <span className="hero-title-line">&amp; horeca.</span>
               </h1>
               <p className="hero-text">
-                Certified meat production for retail, horeca, and consumersprecision processing,
-                consistent excellence.
+                Certified production, disciplined processing, and reliable supply from TIAMO.
               </p>
               <div className="hero-actions">
                 <RouteLink to="/about" onNavigate={onNavigate} className="button button-primary">
-                  About TIAMO
+                  Company profile
                 </RouteLink>
                 <RouteLink
                   to={buildCategoryPath(categories[0].slug)}
                   onNavigate={onNavigate}
                   className="button button-secondary"
                 >
-                  Product categories
+                  Browse categories
                 </RouteLink>
               </div>
             </div>
@@ -392,7 +395,7 @@ function HomePage({ onNavigate }) {
 
       <section className="section-shell contact-cta">
         <div className="section-inner">
-          <p className="section-tag contact-cta__title">Production and quality</p>
+          <p className="section-tag contact-cta__title">Production process</p>
           <div className="contact-cta__media-block">
           <div
             className="contact-cta__copy"
@@ -465,8 +468,8 @@ function ContactPage() {
         <div className="subpage-overlay">
           <div className="subpage-copy narrow">
             <p className="section-tag">Contact</p>
-            <h1>Direct details from the TIAMO contact page.</h1>
-            <p>Address, email, phone link, and map route are preserved in a cleaner company format.</p>
+            <h1>Reach TIAMO directly.</h1>
+            <p>Production site, email, phone, and map route in one place.</p>
           </div>
         </div>
       </section>
@@ -492,11 +495,8 @@ function ContactPage() {
           </article>
 
           <aside className="content-card accent-card">
-            <h2>Contact details</h2>
-            <p>
-              TIAMO serves retail, horeca, and consumer supply from its production base in
-              Gllumovo - Matka, Skopje.
-            </p>
+            <h2>Business snapshot</h2>
+            <p>Production base in Gllumovo - Matka, Skopje serving retail and horeca clients.</p>
             <div className="detail-list compact-detail-list">
               <div className="detail-row">
                 <span>Certifications</span>
@@ -504,7 +504,7 @@ function ContactPage() {
               </div>
               <div className="detail-row">
                 <span>Capacity</span>
-                <strong>About 20 tons per day</strong>
+                <strong>Approx. 20 tons</strong>
               </div>
             </div>
             <a className="button button-primary" href={contactDetails.mapUrl} target="_blank" rel="noreferrer">
@@ -538,7 +538,7 @@ function CategoryPage({ category, onNavigate }) {
         <div className="section-inner">
           <div className="category-topline__summary">
             <h2>{category.products.length} products in this category</h2>
-            <p>Images and product names are arranged from the original TIAMO category source.</p>
+            <p>Browse the category range and open any product for a closer view.</p>
           </div>
 
           <div className="side-links compact">
@@ -586,7 +586,7 @@ function ProductPage({ category, product, onNavigate }) {
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">{category.title}</p>
             <h1>{product.name}</h1>
-            <p>Open the full product image and return to the category when needed.</p>
+            <p>{getProductIntro(category, product)}</p>
           </div>
 
           <div className="category-hero-media product-hero-media">

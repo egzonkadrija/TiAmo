@@ -73,23 +73,20 @@ export const contactDetails = {
 
 export const qualityHighlights = [
   {
-    title: 'Selected raw material',
-    description: 'Selected beef and chicken meat remain the base of the portfolio.',
+    title: 'Selected sourcing',
+    description: 'Beef and poultry sourced to consistent internal quality standards.',
   },
   {
-    title: 'Quality selection',
-    description:
-      'The source summary references marbling, freshness, and feeding quality as selection criteria.',
+    title: 'Controlled intake',
+    description: 'Raw material checked before entering processing.',
   },
   {
-    title: 'Controlled processing',
-    description:
-      'The company operates with modern processing technology and controlled food-safety standards.',
+    title: 'Disciplined production',
+    description: 'Modern processing with repeatable food-safety control points.',
   },
   {
-    title: 'Reliable supply',
-    description:
-      'The business serves stores, restaurants, and consumers with a broad processed-meat assortment.',
+    title: 'Reliable delivery',
+    description: 'Prepared for retail shelves and horeca service without quality drift.',
   },
 ]
 
