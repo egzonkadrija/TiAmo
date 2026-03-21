@@ -715,6 +715,19 @@ img {
   background: #1F2A24;
 }
 
+.facts-section:not(.compact-facts) {
+  min-height: clamp(680px, 82svh, 900px);
+  display: flex;
+  align-items: center;
+  padding-block: clamp(64px, 8vh, 92px);
+}
+
+.facts-section:not(.compact-facts) > .section-inner {
+  display: grid;
+  align-content: center;
+  gap: 36px;
+}
+
 .compact-facts {
   padding-top: 0;
   background: transparent;
@@ -1629,6 +1642,16 @@ img {
 
   .fact-card strong {
     font-size: 1.8rem;
+  }
+
+  .facts-section:not(.compact-facts) {
+    min-height: auto;
+    display: block;
+    padding-block: 56px;
+  }
+
+  .facts-section:not(.compact-facts) > .section-inner {
+    gap: 28px;
   }
 
   .contact-cta__copy {
