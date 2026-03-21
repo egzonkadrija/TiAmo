@@ -1162,6 +1162,12 @@ img {
   margin-top: 20px;
 }
 
+.category-topline__actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: start;
+}
+
 .side-links.compact {
   margin-top: 0;
 }

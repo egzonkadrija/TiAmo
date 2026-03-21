@@ -196,7 +196,11 @@ function App() {
     const slug = pathname.replace('/categories/', '')
     const category = categories.find((item) => item.slug === slug)
     content = category ? (
-      <CategoryPage category={category} onNavigate={navigate} />
+      <CategoryPage
+        category={category}
+        onNavigate={navigate}
+        onNavigateToProducts={() => navigateToSection('/', PRODUCTS_SECTION_ID)}
+      />
     ) : (
       <NotFoundPage onNavigate={navigate} />
     )
@@ -545,7 +549,7 @@ function ContactPage() {
   )
 }
 
-function CategoryPage({ category, onNavigate }) {
+function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
   return (
     <div className="page-content">
       <section className="subpage-banner category-page-hero">
@@ -569,15 +573,10 @@ function CategoryPage({ category, onNavigate }) {
             <p>Browse the category range and open any product for a closer view.</p>
           </div>
 
-          <div className="side-links compact">
-            {categories
-              .filter((item) => item.slug !== category.slug)
-              .slice(0, 4)
-              .map((item) => (
-                <RouteLink key={item.slug} to={buildCategoryPath(item.slug)} onNavigate={onNavigate}>
-                  {item.title}
-                </RouteLink>
-              ))}
+          <div className="category-topline__actions">
+            <button type="button" className="button button-secondary" onClick={onNavigateToProducts}>
+              Back to products
+            </button>
           </div>
         </div>
       </section>
