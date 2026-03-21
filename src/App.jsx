@@ -16,6 +16,7 @@ const primaryNavigation = [
 
 const homeHeroImage = 'https://tiamo.mk/wp-content/uploads/2021/06/1-slider-one_compressed.jpg'
 const productionQualityImage = aboutContent.image
+const PRODUCTS_SECTION_ID = 'products-section'
 const factsStats = [
   ...companyStats,
   {
@@ -96,11 +97,13 @@ function App() {
   const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname))
   const [isProductsOpen, setIsProductsOpen] = useState(false)
   const navProductsRef = useRef(null)
+  const pendingSectionScrollRef = useRef(null)
 
   useEffect(() => {
     const onPopState = () => {
       setPathname(normalizePath(window.location.pathname))
       setIsProductsOpen(false)
+      pendingSectionScrollRef.current = null
       window.scrollTo({ top: 0, behavior: 'smooth' })
     }
 
@@ -110,6 +113,23 @@ function App() {
 
   useEffect(() => {
     document.title = getPageTitle(pathname)
+  }, [pathname])
+
+  useEffect(() => {
+    if (pathname !== '/' || !pendingSectionScrollRef.current) {
+      return
+    }
+
+    const sectionId = pendingSectionScrollRef.current
+    pendingSectionScrollRef.current = null
+
+    requestAnimationFrame(() => {
+      const section = document.getElementById(sectionId)
+
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      }
+    })
   }, [pathname])
 
   useEffect(() => {
@@ -145,6 +165,22 @@ function App() {
     setPathname(normalizedPath)
     setIsProductsOpen(false)
     window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  function navigateToSection(nextPath, sectionId) {
+    const normalizedPath = normalizePath(nextPath)
+    const section = document.getElementById(sectionId)
+
+    if (normalizedPath === pathname && section) {
+      setIsProductsOpen(false)
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      return
+    }
+
+    pendingSectionScrollRef.current = sectionId
+    window.history.pushState({}, '', normalizedPath)
+    setPathname(normalizedPath)
+    setIsProductsOpen(false)
   }
 
   let content = <HomePage onNavigate={navigate} />
@@ -196,15 +232,27 @@ function App() {
                   isProductsOpen ? 'is-open' : ''
                 }`}
               >
-                <button
-                  type="button"
-                  className="nav-products-trigger"
-                  aria-haspopup="true"
-                  aria-expanded={isProductsOpen}
-                  onClick={() => setIsProductsOpen((current) => !current)}
-                >
-                  Products
-                </button>
+                <div className="nav-products-controls">
+                  <a
+                    href={`/#${PRODUCTS_SECTION_ID}`}
+                    className={`nav-products-link ${pathname.startsWith('/categories/') ? 'is-active' : ''}`}
+                    onClick={(event) => {
+                      event.preventDefault()
+                      navigateToSection('/', PRODUCTS_SECTION_ID)
+                    }}
+                  >
+                    Products
+                  </a>
+
+                  <button
+                    type="button"
+                    className="nav-products-trigger"
+                    aria-haspopup="true"
+                    aria-expanded={isProductsOpen}
+                    aria-label="Toggle product categories"
+                    onClick={() => setIsProductsOpen((current) => !current)}
+                  />
+                </div>
 
                 <div className="products-dropdown">
                   <div className="products-dropdown-grid">
@@ -346,7 +394,7 @@ function HomePage({ onNavigate }) {
         </div>
       </section>
 
-      <section className="section-shell muted-shell">
+      <section id={PRODUCTS_SECTION_ID} className="section-shell muted-shell">
         <div className="section-inner">
           <div className="section-heading center">
             <p className="section-tag">Categories</p>
