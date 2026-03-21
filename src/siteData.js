@@ -97,8 +97,7 @@ export const categories = [
   {
     slug: 'fresh-meats',
     title: 'Fresh Meats',
-    description:
-      'Fresh beef cuts and prepared fresh-meat products as presented on the original TIAMO Fresh Meats category page.',
+    description: 'Fresh beef cuts and prepared products for daily retail and horeca supply.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2022/02/beef-ramsteak-1-1024x1024.png',
     products: [
       {
@@ -141,8 +140,7 @@ export const categories = [
   {
     slug: 'dried-meats',
     title: 'Dried Meats',
-    description:
-      'Smoked and dried beef and chicken products collected from the TIAMO Dried Meats category page.',
+    description: 'Smoked and dried beef and poultry products with a stronger traditional profile.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/Rripe-1024x1024.png',
     products: [
       {
@@ -170,8 +168,7 @@ export const categories = [
   {
     slug: 'salami',
     title: 'Salami',
-    description:
-      'Packaged salami products listed on the original TIAMO Salami category page.',
+    description: 'Packaged salami lines suited to retail shelves and everyday commercial demand.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/pileskigradisalama-1024x1024.png',
     products: [
       {
@@ -219,8 +216,7 @@ export const categories = [
   {
     slug: 'sausages',
     title: 'Sausages',
-    description:
-      'Sausage products as listed on the TIAMO Sausages category page.',
+    description: 'Classic and premium sausage products for broad retail and horeca use.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/Cajna-govedska-1024x1024.png',
     products: [
       {
@@ -268,8 +264,7 @@ export const categories = [
   {
     slug: 'hot-dogs',
     title: 'Hot Dogs',
-    description:
-      'The dedicated Hot Dogs category from the TIAMO site, including the original category images.',
+    description: 'Beef and chicken hot dog products for fast-moving retail and food service.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/beef-hot-dog-1024x1024.png',
     products: [
       {
@@ -287,8 +282,7 @@ export const categories = [
   {
     slug: 'marinated-meats',
     title: 'Marinated Meats',
-    description:
-      'Prepared chicken products drawn from the TIAMO Marinated Meats category page.',
+    description: 'Prepared chicken products for quicker kitchen prep and consistent service.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/06/Pileski-stek-so-barbekju-sos-1-1024x1024.png',
     products: [
       {
@@ -306,8 +300,7 @@ export const categories = [
   {
     slug: 'sliced-meats',
     title: 'Sliced Meats',
-    description:
-      'Sliced and packaged products listed on the TIAMO Sliced Meats category page.',
+    description: 'Sliced and packaged meats designed for convenience, counters, and display cases.',
     heroImage: 'https://tiamo.mk/wp-content/uploads/2021/05/bosanski-sudzuk-1024x1024.png',
     products: [
       {
