@@ -414,7 +414,7 @@ function HomePage({ onNavigate }) {
                 disabled={!canSlidePrev}
                 onClick={() => handleSlide(-1)}
               >
-                &larr;
+                <span className="category-slider__chevron category-slider__chevron-left" aria-hidden="true" />
               </button>
               <button
                 type="button"
@@ -423,7 +423,7 @@ function HomePage({ onNavigate }) {
                 disabled={!canSlideNext}
                 onClick={() => handleSlide(1)}
               >
-                &rarr;
+                <span className="category-slider__chevron category-slider__chevron-right" aria-hidden="true" />
               </button>
             </div>
 
