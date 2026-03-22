@@ -400,7 +400,6 @@ function HomePage({ onNavigate }) {
       <section id={PRODUCTS_SECTION_ID} className="section-shell muted-shell">
         <div className="section-inner">
           <div className="section-heading center">
-            <p className="section-tag">Categories</p>
             <h2>Built for retail and horeca.</h2>
             <p>Explore beef and poultry lines by category.</p>
           </div>
@@ -470,7 +469,6 @@ function HomePage({ onNavigate }) {
       <section className="section-shell contact-cta">
         <div className="section-inner">
           <div className="contact-cta__heading">
-            <p className="section-tag contact-cta__title">Production standards</p>
             <h2>Why Choose Us</h2>
           </div>
           <div className="contact-cta__media-block">
