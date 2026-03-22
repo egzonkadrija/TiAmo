@@ -216,10 +216,9 @@ function App() {
                 } ${
                   isProductsOpen ? 'is-open' : ''
                 }`}
-                onMouseEnter={() => setIsProductsOpen(true)}
                 onMouseLeave={closeProductsDropdown}
               >
-                <div className="nav-products-controls">
+                <div className="nav-products-controls" onMouseEnter={() => setIsProductsOpen(true)}>
                   <RouteLink
                     to="/products"
                     onNavigate={navigate}
