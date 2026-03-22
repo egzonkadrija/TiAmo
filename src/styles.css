@@ -1681,6 +1681,10 @@ img {
     flex-wrap: wrap;
   }
 
+  .category-slider__track {
+    gap: 12px;
+  }
+
   .hero-overlay > .hero-panel,
   .subpage-overlay > .subpage-copy {
     width: min(640px, 100%);
@@ -1779,7 +1783,7 @@ img {
   }
 
   .category-slider__card {
-    flex-basis: min(320px, calc(100vw - 44px));
+    flex-basis: calc((100% - 12px) / 2);
   }
 
   .overview-card {
@@ -1832,6 +1836,11 @@ img {
   .button,
   .hero-actions .button {
     width: 100%;
+  }
+
+  .category-slider__controls .category-slider__button {
+    width: 52px;
+    flex: 0 0 52px;
   }
 
   .hero-actions {
