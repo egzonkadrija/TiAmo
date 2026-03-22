@@ -922,6 +922,11 @@ img {
   font-weight: 700;
 }
 
+.category-slider__button:hover {
+  border-color: rgba(20, 33, 23, 0.14);
+  color: var(--text);
+}
+
 .category-slider__button:disabled {
   border-color: rgba(20, 33, 23, 0.08);
   color: rgba(20, 33, 23, 0.3);
@@ -1612,6 +1617,20 @@ img {
   .contact-grid > .section-inner,
   .category-topline > .section-inner {
     grid-template-columns: 1fr;
+  }
+
+  .contact-cta__media-block,
+  .quality-list {
+    grid-row: auto;
+  }
+
+  .quality-list {
+    grid-template-rows: none;
+    min-height: 0;
+  }
+
+  .category-topline__actions {
+    justify-content: flex-start;
   }
 
   .hero-layout {

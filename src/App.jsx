@@ -501,7 +501,7 @@ function HomePage({ onNavigate }) {
         <div className="section-inner">
           <div className="contact-cta__heading">
             <p className="section-tag contact-cta__title">Production standards</p>
-            <h2>How TIAMO works.</h2>
+            <h2>Why Choose Us</h2>
           </div>
           <div className="contact-cta__media-block">
           <div
