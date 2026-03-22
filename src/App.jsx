@@ -101,11 +101,15 @@ function App() {
   const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname))
   const [isProductsOpen, setIsProductsOpen] = useState(false)
   const navProductsRef = useRef(null)
+  const productsDropdownRef = useRef(null)
 
   function closeProductsDropdown() {
     setIsProductsOpen(false)
 
-    if (navProductsRef.current?.contains(document.activeElement)) {
+    if (
+      navProductsRef.current?.contains(document.activeElement) ||
+      productsDropdownRef.current?.contains(document.activeElement)
+    ) {
       document.activeElement?.blur()
     }
   }
@@ -127,7 +131,10 @@ function App() {
 
   useEffect(() => {
     const onPointerDown = (event) => {
-      if (!navProductsRef.current?.contains(event.target)) {
+      if (
+        !navProductsRef.current?.contains(event.target) &&
+        !productsDropdownRef.current?.contains(event.target)
+      ) {
         setIsProductsOpen(false)
       }
     }
@@ -190,7 +197,7 @@ function App() {
       <div className="ambient ambient-left" />
       <div className="ambient ambient-right" />
 
-      <header className="site-header">
+      <header className="site-header" onMouseLeave={closeProductsDropdown}>
         <div className="header-main">
           <RouteLink to="/" onNavigate={navigate} className="brand-lockup">
             <img className="brand-logo" src={tiamoLogo} alt="TIAMO logo" />
@@ -216,7 +223,6 @@ function App() {
                 } ${
                   isProductsOpen ? 'is-open' : ''
                 }`}
-                onMouseLeave={closeProductsDropdown}
               >
                 <div className="nav-products-controls" onMouseEnter={() => setIsProductsOpen(true)}>
                   <RouteLink
@@ -238,46 +244,51 @@ function App() {
                     onClick={() => setIsProductsOpen((current) => !current)}
                   />
                 </div>
-
-                <div className="products-dropdown" onMouseLeave={closeProductsDropdown}>
-                  <div className="products-dropdown-inner">
-                    <div className="products-dropdown-grid">
-                      {categories.map((category) => {
-                        const categoryPath = buildCategoryPath(category.slug)
-
-                        return (
-                          <RouteLink
-                            key={category.slug}
-                            to={categoryPath}
-                            onNavigate={navigate}
-                            className={`products-dropdown-card ${
-                              pathname.startsWith(categoryPath) ? 'is-active' : ''
-                            }`}
-                          >
-                            <img
-                              className={`products-dropdown-card-image ${
-                                category.slug === 'sausages' ? 'products-dropdown-card-image-large' : ''
-                              }`}
-                              src={category.heroImage}
-                              alt={category.title}
-                              loading="lazy"
-                            />
-                            <div className="products-dropdown-card-body">
-                              <strong>{category.title}</strong>
-                              <span>{category.products.length} products</span>
-                            </div>
-                          </RouteLink>
-                        )
-                      })}
-                    </div>
-                  </div>
-                </div>
               </div>
             </nav>
 
             <RouteLink to="/contact" onNavigate={navigate} className="button button-primary header-cta">
               Contact
             </RouteLink>
+          </div>
+        </div>
+
+        <div
+          ref={productsDropdownRef}
+          className={`products-dropdown ${isProductsOpen ? 'is-open' : ''}`}
+          onMouseEnter={() => setIsProductsOpen(true)}
+          onMouseLeave={closeProductsDropdown}
+        >
+          <div className="products-dropdown-inner">
+            <div className="products-dropdown-grid">
+              {categories.map((category) => {
+                const categoryPath = buildCategoryPath(category.slug)
+
+                return (
+                  <RouteLink
+                    key={category.slug}
+                    to={categoryPath}
+                    onNavigate={navigate}
+                    className={`products-dropdown-card ${
+                      pathname.startsWith(categoryPath) ? 'is-active' : ''
+                    }`}
+                  >
+                    <img
+                      className={`products-dropdown-card-image ${
+                        category.slug === 'sausages' ? 'products-dropdown-card-image-large' : ''
+                      }`}
+                      src={category.heroImage}
+                      alt={category.title}
+                      loading="lazy"
+                    />
+                    <div className="products-dropdown-card-body">
+                      <strong>{category.title}</strong>
+                      <span>{category.products.length} products</span>
+                    </div>
+                  </RouteLink>
+                )
+              })}
+            </div>
           </div>
         </div>
       </header>
