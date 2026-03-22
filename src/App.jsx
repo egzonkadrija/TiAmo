@@ -102,6 +102,14 @@ function App() {
   const [isProductsOpen, setIsProductsOpen] = useState(false)
   const navProductsRef = useRef(null)
 
+  function closeProductsDropdown() {
+    setIsProductsOpen(false)
+
+    if (navProductsRef.current?.contains(document.activeElement)) {
+      document.activeElement?.blur()
+    }
+  }
+
   useEffect(() => {
     const onPopState = () => {
       setPathname(normalizePath(window.location.pathname))
@@ -208,7 +216,8 @@ function App() {
                 } ${
                   isProductsOpen ? 'is-open' : ''
                 }`}
-                onMouseLeave={() => setIsProductsOpen(false)}
+                onMouseEnter={() => setIsProductsOpen(true)}
+                onMouseLeave={closeProductsDropdown}
               >
                 <div className="nav-products-controls">
                   <RouteLink
@@ -231,35 +240,37 @@ function App() {
                   />
                 </div>
 
-                <div className="products-dropdown">
-                  <div className="products-dropdown-grid">
-                    {categories.map((category) => {
-                      const categoryPath = buildCategoryPath(category.slug)
+                <div className="products-dropdown" onMouseLeave={closeProductsDropdown}>
+                  <div className="products-dropdown-inner">
+                    <div className="products-dropdown-grid">
+                      {categories.map((category) => {
+                        const categoryPath = buildCategoryPath(category.slug)
 
-                      return (
-                        <RouteLink
-                          key={category.slug}
-                          to={categoryPath}
-                          onNavigate={navigate}
-                          className={`products-dropdown-card ${
-                            pathname.startsWith(categoryPath) ? 'is-active' : ''
-                          }`}
-                        >
-                          <img
-                            className={`products-dropdown-card-image ${
-                              category.slug === 'sausages' ? 'products-dropdown-card-image-large' : ''
+                        return (
+                          <RouteLink
+                            key={category.slug}
+                            to={categoryPath}
+                            onNavigate={navigate}
+                            className={`products-dropdown-card ${
+                              pathname.startsWith(categoryPath) ? 'is-active' : ''
                             }`}
-                            src={category.heroImage}
-                            alt={category.title}
-                            loading="lazy"
-                          />
-                          <div className="products-dropdown-card-body">
-                            <strong>{category.title}</strong>
-                            <span>{category.products.length} products</span>
-                          </div>
-                        </RouteLink>
-                      )
-                    })}
+                          >
+                            <img
+                              className={`products-dropdown-card-image ${
+                                category.slug === 'sausages' ? 'products-dropdown-card-image-large' : ''
+                              }`}
+                              src={category.heroImage}
+                              alt={category.title}
+                              loading="lazy"
+                            />
+                            <div className="products-dropdown-card-body">
+                              <strong>{category.title}</strong>
+                              <span>{category.products.length} products</span>
+                            </div>
+                          </RouteLink>
+                        )
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -621,15 +632,11 @@ function ContactPage() {
             <h2>Business snapshot</h2>
             <p>Production base in Gllumovo - Matka, Skopje serving retail and horeca clients.</p>
             <div className="detail-list compact-detail-list">
-              <div className="detail-row">
-                <span>Certifications</span>
-                <strong>HACCP and HALAL</strong>
+                <div className="detail-row">
+                  <span>Certifications</span>
+                  <strong>HACCP and HALAL</strong>
+                </div>
               </div>
-              <div className="detail-row">
-                <span>Capacity</span>
-                <strong>Approx. 20 tons</strong>
-              </div>
-            </div>
             <a className="button button-primary" href={contactDetails.mapUrl} target="_blank" rel="noreferrer">
               Open Google Maps
             </a>

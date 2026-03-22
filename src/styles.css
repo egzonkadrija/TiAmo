@@ -200,7 +200,9 @@ img {
 }
 
 .nav-products {
-  position: relative;
+  position: static;
+  padding-bottom: 24px;
+  margin-bottom: -24px;
 }
 
 .nav-products-controls {
@@ -259,22 +261,20 @@ img {
 
 .products-dropdown {
   position: absolute;
-  top: 100%;
-  left: 50%;
+  top: calc(100% - 24px);
+  left: 0;
+  right: 0;
   z-index: 20;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0;
-  width: min(640px, calc(100vw - 32px));
+  width: 100%;
   margin-top: 0;
-  padding: 24px;
+  padding: 24px var(--section-gutter);
   background: #ffffff;
-  border: 1px solid var(--border);
-  border-radius: 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
   box-shadow: var(--shadow);
   opacity: 0;
   pointer-events: none;
-  transform: translate(-50%, 8px);
+  transform: translateY(0);
   transition:
     opacity 180ms ease,
     transform 180ms ease;
@@ -284,7 +284,12 @@ img {
 .nav-products.is-open .products-dropdown {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, 0);
+  transform: translateY(0);
+}
+
+.products-dropdown-inner {
+  width: min(var(--content-width), 100%);
+  margin-inline: auto;
 }
 
 .products-dropdown-grid {
@@ -931,11 +936,15 @@ img {
 .category-slider__track {
   display: flex;
   gap: 24px;
+  box-sizing: border-box;
   width: 100%;
   max-width: 100%;
   overflow-x: auto;
+  padding-left: 2px;
+  padding-right: 2px;
   padding-bottom: 10px;
   scroll-snap-type: x proximity;
+  scroll-padding-inline: 2px;
   scrollbar-width: none;
   -ms-overflow-style: none;
   overscroll-behavior-x: contain;
@@ -1146,6 +1155,10 @@ img {
   gap: 22px;
 }
 
+.contact-grid > .section-inner {
+  align-items: start;
+}
+
 .two-column-layout .content-card {
   text-align: left;
 }
@@ -1282,6 +1295,17 @@ img {
 
 .accent-card {
   background: #ffffff;
+}
+
+.contact-grid .content-card {
+  display: grid;
+  align-content: start;
+  gap: 20px;
+  height: 100%;
+}
+
+.contact-grid .content-card h2 {
+  margin-top: 0;
 }
 
 .side-links {
@@ -1565,10 +1589,14 @@ img {
     display: none;
     width: 100%;
     margin-top: 10px;
+    padding: 18px;
     transform: none;
     box-shadow: none;
-    border-radius: 20px;
-    padding: 18px;
+    border: 1px solid var(--border);
+  }
+
+  .products-dropdown-inner {
+    width: 100%;
   }
 
   .nav-products:focus-within .products-dropdown {
