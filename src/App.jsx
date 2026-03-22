@@ -551,16 +551,12 @@ function AboutPage({ onNavigate }) {
 function ProductsPage({ onNavigate }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner category-page-hero">
+      <section className="subpage-banner category-page-hero products-page-hero">
         <div className="section-inner category-hero-layout">
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">Products</p>
             <h1>Browse TIAMO products.</h1>
             <p>Open any category to explore the full product range.</p>
-          </div>
-
-          <div className="category-hero-media">
-            <img src={categories[0].heroImage} alt="TIAMO products" loading="eager" />
           </div>
         </div>
       </section>

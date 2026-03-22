@@ -118,6 +118,8 @@ img {
   gap: 0;
   width: fit-content;
   justify-self: start;
+  position: relative;
+  z-index: 24;
   line-height: 0;
 }
 
@@ -1097,6 +1099,14 @@ img {
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.85fr);
   align-items: center;
   gap: 36px;
+}
+
+.products-page-hero .category-hero-layout {
+  grid-template-columns: 1fr;
+}
+
+.products-page-hero .subpage-copy-solid {
+  max-width: 720px;
 }
 
 .subpage-copy-solid {
