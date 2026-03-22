@@ -316,6 +316,7 @@ function App() {
 
 function HomePage({ onNavigate }) {
   const sliderRef = useRef(null)
+  const autoSlideDirectionRef = useRef(1)
   const [canSlidePrev, setCanSlidePrev] = useState(false)
   const [canSlideNext, setCanSlideNext] = useState(true)
 
@@ -364,13 +365,16 @@ function HomePage({ onNavigate }) {
     const intervalId = window.setInterval(() => {
       const step = getSliderStep(slider)
       const maxScrollLeft = Math.max(0, slider.scrollWidth - slider.clientWidth)
+      let direction = autoSlideDirectionRef.current
 
       if (slider.scrollLeft >= maxScrollLeft - 4) {
-        slider.scrollTo({ left: 0, behavior: 'smooth' })
-        return
+        direction = -1
+      } else if (slider.scrollLeft <= 4) {
+        direction = 1
       }
 
-      slider.scrollBy({ left: step, behavior: 'smooth' })
+      autoSlideDirectionRef.current = direction
+      slider.scrollBy({ left: step * direction, behavior: 'smooth' })
     }, 3500)
 
     return () => window.clearInterval(intervalId)
@@ -495,7 +499,10 @@ function HomePage({ onNavigate }) {
 
       <section className="section-shell contact-cta">
         <div className="section-inner">
-          <p className="section-tag contact-cta__title">Controlled production</p>
+          <div className="contact-cta__heading">
+            <p className="section-tag contact-cta__title">Production standards</p>
+            <h2>How TIAMO works.</h2>
+          </div>
           <div className="contact-cta__media-block">
           <div
             className="contact-cta__copy"
@@ -504,8 +511,9 @@ function HomePage({ onNavigate }) {
           </div>
           </div>
           <div className="quality-list">
-            {qualityHighlights.map((item) => (
+            {qualityHighlights.map((item, index) => (
               <div className="quality-list__item" key={item.title}>
+                <strong className="quality-list__index">{String(index + 1).padStart(2, '0')}</strong>
                 <span>{item.title}</span>
                 <p>{item.description}</p>
               </div>

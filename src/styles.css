@@ -1132,15 +1132,33 @@ img {
   min-height: 420px;
 }
 
-.contact-cta__title {
+.contact-cta__heading {
   grid-column: 1 / -1;
+  display: grid;
+  justify-items: center;
+  gap: 10px;
   padding-top: 22px;
   margin-bottom: 6px;
   text-align: center;
+  border-top: 1px solid var(--border);
+}
+
+.contact-cta__title {
+  margin: 0;
+  padding-top: 0;
+  margin-bottom: 0;
+  text-align: center;
   font-size: 0.98rem;
   letter-spacing: 0.14em;
-  border-top: 1px solid var(--border);
   color: #000000;
+}
+
+.contact-cta__heading h2 {
+  margin: 0;
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.02;
+  color: #142117;
 }
 
 .contact-cta__copy {
@@ -1188,6 +1206,14 @@ img {
   border: 1px solid var(--border);
   border-radius: 18px;
   background: #ffffff;
+}
+
+.quality-list__index {
+  color: rgba(20, 33, 23, 0.34);
+  font-family: 'Sora', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
 }
 
 .quality-list__item span {

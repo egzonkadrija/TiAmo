@@ -72,15 +72,15 @@ export const contactDetails = {
 export const qualityHighlights = [
   {
     title: 'Selected sourcing',
-    description: 'Beef and poultry sourced to consistent internal standards.',
+    description: 'Beef and poultry sourced to internal quality standards.',
   },
   {
     title: 'Controlled processing',
-    description: 'Raw material checked and processed through defined food-safety controls.',
+    description: 'Raw material checked and processed through food-safety controls.',
   },
   {
     title: 'Reliable delivery',
-    description: 'Prepared for retail shelves and horeca service with consistent quality.',
+    description: 'Prepared for retail and horeca with consistent quality.',
   },
 ]
 
