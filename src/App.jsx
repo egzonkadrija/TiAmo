@@ -316,7 +316,6 @@ function App() {
 
 function HomePage({ onNavigate }) {
   const sliderRef = useRef(null)
-  const autoSlideDirectionRef = useRef(1)
   const [canSlidePrev, setCanSlidePrev] = useState(false)
   const [canSlideNext, setCanSlideNext] = useState(true)
 
@@ -353,31 +352,6 @@ function HomePage({ onNavigate }) {
       slider.removeEventListener('scroll', updateSliderState)
       window.removeEventListener('resize', updateSliderState)
     }
-  }, [])
-
-  useEffect(() => {
-    const slider = sliderRef.current
-
-    if (!slider) {
-      return
-    }
-
-    const intervalId = window.setInterval(() => {
-      const step = getSliderStep(slider)
-      const maxScrollLeft = Math.max(0, slider.scrollWidth - slider.clientWidth)
-      let direction = autoSlideDirectionRef.current
-
-      if (slider.scrollLeft >= maxScrollLeft - 4) {
-        direction = -1
-      } else if (slider.scrollLeft <= 4) {
-        direction = 1
-      }
-
-      autoSlideDirectionRef.current = direction
-      slider.scrollBy({ left: step * direction, behavior: 'smooth' })
-    }, 3500)
-
-    return () => window.clearInterval(intervalId)
   }, [])
 
   function handleSlide(direction) {

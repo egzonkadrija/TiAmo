@@ -188,7 +188,6 @@ img {
   color: rgba(20, 33, 23, 0.78);
 }
 
-.primary-nav a:hover,
 .primary-nav a.is-active {
   color: var(--accent);
   background: transparent;
@@ -244,18 +243,15 @@ img {
   transition: transform 180ms ease;
 }
 
-.nav-products:hover .nav-products-link,
 .nav-products:focus-within .nav-products-link,
 .nav-products.is-open .nav-products-link,
 .nav-products-link.is-active,
-.nav-products:hover .nav-products-trigger,
 .nav-products:focus-within .nav-products-trigger,
 .nav-products.is-open .nav-products-trigger,
 .nav-products.is-active .nav-products-trigger {
   color: var(--accent);
 }
 
-.nav-products:hover .nav-products-trigger::after,
 .nav-products:focus-within .nav-products-trigger::after,
 .nav-products.is-open .nav-products-trigger::after {
   transform: translateY(1px) rotate(225deg);
@@ -284,7 +280,6 @@ img {
     transform 180ms ease;
 }
 
-.nav-products:hover .products-dropdown,
 .nav-products:focus-within .products-dropdown,
 .nav-products.is-open .products-dropdown {
   opacity: 1;
@@ -309,8 +304,7 @@ img {
   background: #ffffff;
   transition:
     border-color 180ms ease,
-    background-color 180ms ease,
-    transform 180ms ease;
+    background-color 180ms ease;
 }
 
 .products-dropdown-card-image {
@@ -353,7 +347,6 @@ img {
 .products-dropdown-card.is-active {
   border-color: rgba(11, 143, 71, 0.3);
   background: #ffffff;
-  transform: translateY(-2px);
 }
 
 .products-dropdown-card:hover strong,
@@ -642,30 +635,16 @@ img {
     transform 180ms ease;
 }
 
-.button:hover {
-  transform: translateY(-2px);
-}
-
 .button-primary {
   background: var(--accent);
   color: #ffffff;
   box-shadow: none;
 }
 
-.button-primary:hover {
-  background: var(--accent-hover);
-  color: var(--header);
-}
-
 .button-secondary {
   border: 1px solid rgba(20, 33, 23, 0.14);
   background: #ffffff;
   color: var(--text);
-}
-
-.button-secondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 .overview-section,
@@ -751,12 +730,12 @@ img {
   line-height: 1.2;
 }
 
-.overview-card:hover,
-.category-panel:hover,
-.product-card:hover,
-.fact-card:hover,
-.side-links a:hover,
-.footer-links a:hover {
+.overview-card,
+.category-panel,
+.product-card,
+.fact-card,
+.side-links a,
+.footer-links a {
   transform: none;
 }
 
@@ -922,11 +901,6 @@ img {
   font-weight: 700;
 }
 
-.category-slider__button:hover {
-  border-color: rgba(20, 33, 23, 0.14);
-  color: var(--text);
-}
-
 .category-slider__button:disabled {
   border-color: rgba(20, 33, 23, 0.08);
   color: rgba(20, 33, 23, 0.3);
@@ -977,9 +951,6 @@ img {
   border-color: rgba(11, 143, 71, 0.38);
 }
 
-.category-slider__card:hover .category-panel__body h3 {
-  color: var(--accent);
-}
 
 .category-panel,
 .product-card {
@@ -1004,6 +975,10 @@ img {
   border-top: 1px solid var(--border);
 }
 
+.category-panel:hover {
+  border-top-color: rgba(11, 143, 71, 0.38);
+}
+
 .product-card {
   cursor: pointer;
   grid-template-columns: 1fr;
@@ -1011,6 +986,10 @@ img {
   padding: 18px;
   border: 1px solid var(--border);
   background: #ffffff;
+}
+
+.product-card:hover {
+  border-color: rgba(11, 143, 71, 0.38);
 }
 
 .category-panel__body,
@@ -1038,13 +1017,6 @@ img {
   line-height: 1.68;
 }
 
-.category-panel:hover {
-  border-top-color: rgba(11, 143, 71, 0.38);
-}
-
-.category-panel:hover .category-panel__body h3 {
-  color: var(--accent);
-}
 
 .contact-cta {
   display: block;
@@ -1289,11 +1261,6 @@ img {
   font-weight: 600;
 }
 
-.side-links a:hover,
-.footer-links a:hover {
-  color: var(--accent);
-}
-
 .detail-list {
   display: grid;
   gap: 18px;
@@ -1317,10 +1284,6 @@ img {
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.75;
-}
-
-.detail-row a:hover {
-  color: var(--accent);
 }
 
 .site-footer {
@@ -1393,10 +1356,6 @@ img {
   font-size: 0.94rem;
   font-weight: 500;
   line-height: 1.6;
-}
-
-.footer-links-plain a:hover {
-  color: #ffffff;
 }
 
 .footer-links.footer-links-text span,
@@ -1574,7 +1533,6 @@ img {
     padding: 18px;
   }
 
-  .nav-products:hover .products-dropdown,
   .nav-products:focus-within .products-dropdown {
     transform: none;
   }
@@ -1770,7 +1728,6 @@ img {
     box-shadow: var(--shadow);
   }
 
-  .nav-products:hover .products-dropdown,
   .nav-products:focus-within .products-dropdown,
   .nav-products.is-open .products-dropdown {
     display: grid;
