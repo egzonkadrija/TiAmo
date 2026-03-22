@@ -906,6 +906,7 @@ img {
 .category-slider {
   display: grid;
   gap: 20px;
+  overflow: hidden;
 }
 
 .category-slider__controls {
@@ -930,11 +931,15 @@ img {
 .category-slider__track {
   display: flex;
   gap: 24px;
+  width: 100%;
+  max-width: 100%;
   overflow-x: auto;
   padding-bottom: 10px;
   scroll-snap-type: x proximity;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  overscroll-behavior-x: contain;
+  touch-action: pan-y;
 }
 
 .category-slider__track::-webkit-scrollbar {
