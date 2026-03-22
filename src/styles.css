@@ -203,14 +203,22 @@ img {
 
 .nav-products {
   position: static;
-  padding-bottom: 24px;
-  margin-bottom: -24px;
 }
 
 .nav-products-controls {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+}
+
+.nav-products-controls::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: -12px;
+  right: -12px;
+  height: 24px;
 }
 
 .nav-products-link {
@@ -263,7 +271,7 @@ img {
 
 .products-dropdown {
   position: absolute;
-  top: calc(100% - 24px);
+  top: 100%;
   left: 0;
   right: 0;
   z-index: 20;
@@ -1087,6 +1095,10 @@ img {
   color: var(--muted);
   font-size: 1.02rem;
   line-height: 1.8;
+}
+
+.home-about-section__actions {
+  margin-top: 8px;
 }
 
 

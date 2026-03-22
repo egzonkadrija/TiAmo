@@ -472,6 +472,11 @@ function HomePage({ onNavigate }) {
             <p>
               Today, TIAMO remains a reliable partner for retail and horeca markets.
             </p>
+            <div className="home-about-section__actions">
+              <RouteLink to="/about" onNavigate={onNavigate} className="button button-primary">
+                About
+              </RouteLink>
+            </div>
           </div>
         </div>
       </section>
