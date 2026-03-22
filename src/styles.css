@@ -585,6 +585,10 @@ img {
   margin-top: 0;
 }
 
+.category-topline__summary h2 {
+  white-space: nowrap;
+}
+
 .hero-title-line {
   display: block;
   white-space: nowrap;
@@ -1105,8 +1109,16 @@ img {
   grid-template-columns: 1fr;
 }
 
-.products-page-hero .subpage-copy-solid {
+.category-list-page-hero .category-hero-layout {
+  grid-template-columns: 1fr;
+}
+
+.products-page-hero .subpage-copy-solid,
+.category-list-page-hero .subpage-copy-solid,
+.product-page-hero .subpage-copy-solid {
   max-width: 720px;
+  margin-inline: auto;
+  text-align: center;
 }
 
 .subpage-copy-solid {

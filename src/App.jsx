@@ -556,7 +556,7 @@ function ProductsPage({ onNavigate }) {
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">Products</p>
             <h1>Browse TIAMO products.</h1>
-            <p>Open any category to explore the full product range.</p>
+            <p>Browse categories and open a product for details.</p>
           </div>
         </div>
       </section>
@@ -566,7 +566,7 @@ function ProductsPage({ onNavigate }) {
           <div className="section-heading center">
             <p className="section-tag">Categories</p>
             <h2>Browse products by category.</h2>
-            <p>Select a category to view the available products.</p>
+            <p>Browse categories and open a product for details.</p>
           </div>
 
           <div className="category-showcase">
@@ -646,16 +646,12 @@ function ContactPage() {
 function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
   return (
     <div className="page-content">
-      <section className="subpage-banner category-page-hero">
+      <section className="subpage-banner category-page-hero category-list-page-hero">
         <div className="section-inner category-hero-layout">
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">TIAMO category</p>
             <h1>{category.title}</h1>
             <p>{category.description}</p>
-          </div>
-
-          <div className="category-hero-media">
-            <img src={category.heroImage} alt={category.title} loading="eager" />
           </div>
         </div>
       </section>
@@ -664,7 +660,7 @@ function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
         <div className="section-inner">
           <div className="category-topline__summary">
             <h2>{category.products.length} products in this category</h2>
-            <p>Browse the category range and open any product for a closer view.</p>
+            <p>Browse categories and open a product for details.</p>
           </div>
 
           <div className="category-topline__actions">
