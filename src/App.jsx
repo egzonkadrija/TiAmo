@@ -316,6 +316,65 @@ function App() {
 
 function HomePage({ onNavigate }) {
   const sliderRef = useRef(null)
+  const [canSlidePrev, setCanSlidePrev] = useState(false)
+  const [canSlideNext, setCanSlideNext] = useState(true)
+
+  function getSliderStep(slider) {
+    if (!slider) {
+      return 0
+    }
+
+    const card = slider.querySelector('.category-slider__card')
+    const sliderStyles = window.getComputedStyle(slider)
+    const gap = Number.parseFloat(sliderStyles.columnGap || sliderStyles.gap || '0')
+
+    return card ? card.getBoundingClientRect().width + gap : slider.clientWidth * 0.5
+  }
+
+  useEffect(() => {
+    const slider = sliderRef.current
+
+    if (!slider) {
+      return
+    }
+
+    const updateSliderState = () => {
+      const maxScrollLeft = Math.max(0, slider.scrollWidth - slider.clientWidth)
+      setCanSlidePrev(slider.scrollLeft > 4)
+      setCanSlideNext(slider.scrollLeft < maxScrollLeft - 4)
+    }
+
+    updateSliderState()
+    slider.addEventListener('scroll', updateSliderState, { passive: true })
+    window.addEventListener('resize', updateSliderState)
+
+    return () => {
+      slider.removeEventListener('scroll', updateSliderState)
+      window.removeEventListener('resize', updateSliderState)
+    }
+  }, [])
+
+  useEffect(() => {
+    const slider = sliderRef.current
+
+    if (!slider) {
+      return
+    }
+
+    const intervalId = window.setInterval(() => {
+      const step = getSliderStep(slider)
+      const maxScrollLeft = Math.max(0, slider.scrollWidth - slider.clientWidth)
+
+      if (slider.scrollLeft >= maxScrollLeft - 4) {
+        slider.scrollTo({ left: 0, behavior: 'smooth' })
+        return
+      }
+
+      slider.scrollBy({ left: step, behavior: 'smooth' })
+    }, 3500)
+
+    return () => window.clearInterval(intervalId)
+  }, [])
 
   function handleSlide(direction) {
     const slider = sliderRef.current
@@ -323,11 +382,7 @@ function HomePage({ onNavigate }) {
     if (!slider) {
       return
     }
-
-    const card = slider.querySelector('.category-slider__card')
-    const sliderStyles = window.getComputedStyle(slider)
-    const gap = Number.parseFloat(sliderStyles.columnGap || sliderStyles.gap || '0')
-    const amount = card ? card.getBoundingClientRect().width + gap : slider.clientWidth * 0.5
+    const amount = getSliderStep(slider)
 
     slider.scrollBy({ left: direction * amount, behavior: 'smooth' })
   }
@@ -402,6 +457,7 @@ function HomePage({ onNavigate }) {
                 type="button"
                 className="button button-secondary category-slider__button"
                 aria-label="Show previous categories"
+                disabled={!canSlidePrev}
                 onClick={() => handleSlide(-1)}
               >
                 &larr;
@@ -410,6 +466,7 @@ function HomePage({ onNavigate }) {
                 type="button"
                 className="button button-secondary category-slider__button"
                 aria-label="Show next categories"
+                disabled={!canSlideNext}
                 onClick={() => handleSlide(1)}
               >
                 &rarr;

@@ -921,6 +921,12 @@ img {
   font-weight: 700;
 }
 
+.category-slider__button:disabled {
+  border-color: rgba(20, 33, 23, 0.08);
+  color: rgba(20, 33, 23, 0.3);
+  cursor: default;
+}
+
 .category-slider__track {
   display: flex;
   gap: 24px;
