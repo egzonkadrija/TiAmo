@@ -447,6 +447,26 @@ function HomePage({ onNavigate }) {
         </div>
       </section>
 
+      <section className="section-shell home-about-section">
+        <div className="section-inner">
+          <div className="home-about-section__content">
+            <h2>About Us</h2>
+            <p>
+              Since 1997, TIAMO has developed into a modern meat processing company built on
+              quality and experience. From small beginnings, it has grown through continuous
+              investment and improvement.
+            </p>
+            <p>
+              With advanced technology and strict control, the company ensures safe and
+              consistent production.
+            </p>
+            <p>
+              Today, TIAMO remains a reliable partner for retail and horeca markets.
+            </p>
+          </div>
+        </div>
+      </section>
+
       <section className="section-shell contact-cta">
         <div className="section-inner">
           <div className="contact-cta__heading">
