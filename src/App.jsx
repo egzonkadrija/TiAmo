@@ -562,10 +562,9 @@ function ProductsPage({ onNavigate }) {
 
       <section className="section-shell muted-shell">
         <div className="section-inner">
-          <div className="section-heading center">
+          <div className="section-heading center products-categories-heading">
             <p className="section-tag">Categories</p>
             <h2>Browse products by category.</h2>
-            <p>Browse categories and open a product for details.</p>
           </div>
 
           <div className="category-showcase">
