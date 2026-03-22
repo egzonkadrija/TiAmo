@@ -296,17 +296,12 @@ function App() {
             <div className="footer-column">
               <h2>Contact</h2>
               <div className="footer-links footer-links-text footer-links-plain">
-                <span>{contactDetails.address}</span>
                 <a href={`mailto:${contactDetails.email}`}>{contactDetails.email}</a>
                 <a href={`tel:${contactDetails.phoneRaw}`}>{contactDetails.phoneDisplay}</a>
+                <span>{contactDetails.address}</span>
               </div>
             </div>
 
-          </div>
-
-          <div className="footer-bottom">
-            <span>TIAMO</span>
-            <span>Gllumovo - Matka, Skopje</span>
           </div>
         </div>
       </footer>
@@ -398,25 +393,6 @@ function HomePage({ onNavigate }) {
             </div>
 
             <div className="hero-stage hero-stage-static" aria-hidden="true" />
-          </div>
-        </div>
-      </section>
-
-      <section className="facts-section">
-        <div className="section-inner">
-          <div className="section-heading center">
-            <p className="section-tag">Facts and figures</p>
-            <h2>Production, capacity, and compliance in one view.</h2>
-          </div>
-
-          <div className="facts-grid">
-            {factsStats.map((item) => (
-              <article className="fact-card" key={item.label}>
-                <strong>{item.value}</strong>
-                <span className="fact-card__label">{item.label}</span>
-                <p className="fact-card__note">{item.note}</p>
-              </article>
-            ))}
           </div>
         </div>
       </section>
