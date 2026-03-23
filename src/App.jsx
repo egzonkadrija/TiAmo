@@ -664,7 +664,6 @@ function CategoryPage({ category, onNavigate, onNavigateToProducts }) {
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">TIAMO category</p>
             <h1>{category.title}</h1>
-            <p>{category.description}</p>
           </div>
         </div>
       </section>
