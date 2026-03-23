@@ -686,6 +686,7 @@ img {
   padding: 0 22px;
   border-radius: 999px;
   font-weight: 700;
+  cursor: pointer;
   transition:
     background-color 180ms ease,
     color 180ms ease,
