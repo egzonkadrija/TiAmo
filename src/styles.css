@@ -1172,6 +1172,10 @@ img {
   grid-template-columns: 1fr;
 }
 
+.product-page-hero .category-hero-layout {
+  grid-template-columns: 1fr;
+}
+
 .products-page-hero .subpage-copy-solid,
 .category-list-page-hero .subpage-copy-solid,
 .product-page-hero .subpage-copy-solid {

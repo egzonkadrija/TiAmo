@@ -571,7 +571,6 @@ function ProductsPage({ onNavigate }) {
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">Products</p>
             <h1>Browse TIAMO products.</h1>
-            <p>Browse categories and open a product for details.</p>
           </div>
         </div>
       </section>
@@ -717,11 +716,6 @@ function ProductPage({ category, product, onNavigate }) {
           <div className="subpage-copy subpage-copy-solid">
             <p className="section-tag">{category.title}</p>
             <h1>{product.name}</h1>
-            <p>{getProductIntro(category, product)}</p>
-          </div>
-
-          <div className="category-hero-media product-hero-media">
-            <img src={product.image} alt={product.name} loading="eager" />
           </div>
         </div>
       </section>
